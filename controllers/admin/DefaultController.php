@@ -8,6 +8,7 @@ use panix\mod\seo\models\SeoUrl;
 use panix\mod\seo\models\search\SeoUrlSearch;
 use panix\mod\seo\models\SeoParams;
 use panix\engine\controllers\AdminController;
+use yii\helpers\Url;
 
 class DefaultController extends AdminController {
 
@@ -111,9 +112,10 @@ class DefaultController extends AdminController {
 
                 $this->saveParams($model);*/
 
+                $redirect = (isset($post['redirect'])) ? $post['redirect'] : Yii::$app->request->url;
+                if (!Yii::$app->request->isAjax)
+                    return $this->redirect($redirect);
 
-
-                return $this->redirect(array("index"));
             }
         }
 
