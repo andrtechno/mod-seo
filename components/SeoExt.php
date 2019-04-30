@@ -32,14 +32,8 @@ class SeoExt extends \yii\base\Component
     public function run()
     {
         $config = Yii::$app->settings->get('seo');
-        if ($config->canonical) {
-            //if (Yii::$app->controller->canonical) {
-            ////    $canonical = Yii::$app->controller->canonical;
-            //} else {
+        if (isset($config->canonical) && $config->canonical) {
             $canonical = Yii::$app->request->getHostInfo() . '/' . Yii::$app->request->getPathInfo();
-            // }
-
-            // Yii::$app->clientScript->registerLinkTag('canonical', null, $canonical);
             Yii::$app->view->registerLinkTag(['rel' => 'canonical', 'href' => $canonical]);
         }
         // if ($config['google_site_verification']) {
@@ -111,9 +105,9 @@ class SeoExt extends \yii\base\Component
             Yii::$app->view->title = $url->title;
             //$this->printMeta('title', Yii::$app->view->title);
         } else {
-           // if (!Yii::$app->view->title) {
-           //     Yii::$app->view->title = Yii::$app->settings->get('app', 'site_name');
-           // }
+            // if (!Yii::$app->view->title) {
+            //     Yii::$app->view->title = Yii::$app->settings->get('app', 'site_name');
+            // }
         }
         $this->printMeta('title', Yii::$app->view->title);
         if ($url->description) {
