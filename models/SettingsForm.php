@@ -9,7 +9,6 @@ use panix\engine\CMS;
 class SettingsForm extends SettingsModel
 {
     protected $module = 'seo';
-    const NAME = 'seo';
     public $googleanalytics_id;
     public $googleanalytics_js;
     public $google_tag_manager;
