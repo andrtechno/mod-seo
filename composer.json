@@ -1,0 +1,25 @@
+{
+    "name": "panix/mod-seo",
+    "description": "Module seo",
+    "keywords": ["pixelion-cms", "module", "seo"],
+    "homepage": "https://github.com/andrtechno/mod-seo",
+    "type": "yii2-extension",
+    "license": "MIT",
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "authors": [
+        {
+            "name": "PIXELION CMS",
+            "email": "dev@pixelion.com.ua",
+            "homepage": "https://pixelion.com.ua"
+        }
+    ],
+    "require": {
+        "panix/engine": "*",
+    },
+    "autoload": {
+        "psr-4": {
+            "panix\\mod\\seo\\": ""
+        }
+    }
+}
