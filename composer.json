@@ -15,7 +15,7 @@
         }
     ],
     "require": {
-        "panix/engine": "*",
+        "panix/engine": "*"
     },
     "autoload": {
         "psr-4": {
