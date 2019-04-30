@@ -1,5 +1,7 @@
 <?php
+
 namespace panix\mod\seo\migrations;
+
 /**
  * Generation migrate by PIXELION CMS
  *
@@ -11,11 +13,14 @@ namespace panix\mod\seo\migrations;
 
 use panix\engine\db\Migration;
 use panix\mod\seo\models\SeoUrl;
+use panix\mod\seo\models\SettingsForm;
 
-class m190330_115548_seo_url extends Migration {
+class m190330_115548_seo_url extends Migration
+{
 
     // Use up()/down() to run migration code without a transaction.
-    public function up() {
+    public function up()
+    {
         $this->createTable(SeoUrl::tableName(), [
             'id' => $this->primaryKey()->unsigned(),
             'url' => $this->string(255)->notNull(),
@@ -25,10 +30,19 @@ class m190330_115548_seo_url extends Migration {
             'text' => $this->text()->null(),
 
         ], $this->tableOptions);
+
         $this->createIndex('url', SeoUrl::tableName(), 'url');
+
+        $settings = [];
+        foreach (SettingsForm::defaultSettings() as $key => $value) {
+            $settings[] = [SettingsForm::$category, $key, $value];
+        }
+
+        $this->batchInsert($this->tableName, ['category', 'param', 'value'], $settings);
     }
 
-    public function down() {
+    public function down()
+    {
         echo "m190330_115548_seo_url cannot be reverted.\n";
         $this->dropTable(SeoUrl::tableName());
         return false;
