@@ -5,8 +5,6 @@
     "homepage": "https://github.com/andrtechno/mod-seo",
     "type": "yii2-extension",
     "license": "MIT",
-    "minimum-stability": "stable",
-    "prefer-stable": true,
     "authors": [
         {
             "name": "PIXELION CMS",
