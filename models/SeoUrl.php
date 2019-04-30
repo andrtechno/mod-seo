@@ -1,18 +1,24 @@
 <?php
+
 namespace panix\mod\seo\models;
+
 use Yii;
 use panix\mod\seo\models\SeoParams;
-class SeoUrl extends \panix\engine\db\ActiveRecord {
+
+class SeoUrl extends \panix\engine\db\ActiveRecord
+{
 
 
     /**
      * @return string the associated database table name
      */
-    public static function tableName() {
+    public static function tableName()
+    {
         return '{{%seo_url}}';
     }
 
-    public function defaultScope() {
+    public function defaultScope()
+    {
         return array(
             'order' => 'id DESC'
         );
@@ -21,13 +27,15 @@ class SeoUrl extends \panix\engine\db\ActiveRecord {
     /**
      * @return array validation rules for model attributes.
      */
-    public function rules() {
+    public function rules()
+    {
         return [
             ['url', 'required'],
-           // ['url', 'UniqueAttributesValidator', 'with' => 'url'],
-            [['title', 'description', 'text'], 'string'],
+            // ['url', 'UniqueAttributesValidator', 'with' => 'url'],
+            [['title', 'description', 'text', 'h1'], 'string'],
             ['title', 'string', 'max' => 150],
-            ['meta_robots','default','value'=>null],
+            ['url', 'trim'],
+            ['meta_robots', 'default', 'value' => null],
             ['meta_robots', 'robotsValidator'],
         ];
     }
@@ -43,13 +51,17 @@ class SeoUrl extends \panix\engine\db\ActiveRecord {
             }
         }
     }
-    public function getParams() {
+
+    public function getParams()
+    {
         return $this->hasMany(SeoParams::class, ['url_id' => 'id']);
     }
+
     /**
      * @return array customized attribute labels (name=>label)
      */
-    public function attributeLabels() {
+    public function attributeLabels()
+    {
         return [
             'id' => 'ID',
             'url' => Yii::t('seo/default', 'URL'),
@@ -58,7 +70,6 @@ class SeoUrl extends \panix\engine\db\ActiveRecord {
             'title' => Yii::t('seo/default', 'TITLE'),
         ];
     }
-
 
 
 }

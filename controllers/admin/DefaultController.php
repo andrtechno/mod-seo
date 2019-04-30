@@ -51,12 +51,11 @@ class DefaultController extends AdminController {
         $this->pageName = Yii::t('app', 'CREATE', 1);
 
 
-
-        if (isset($_POST['SeoUrl'])) {
-            $model->attributes = $_POST['SeoUrl'];
+        $post = Yii::$app->request->post();
+        if ($model->load($post) && $model->validate()) {
             if ($model->save()) {
                 /* save MetaName */
-                if (isset($_POST['SeoMain'])) {
+                /*if (isset($_POST['SeoMain'])) {
                     $items = $_POST['SeoMain'];
                     foreach ($items as $name => $item) {
                         $mod = new SeoMain();
@@ -65,7 +64,7 @@ class DefaultController extends AdminController {
                         $mod->attributes = $item;
                         $mod->save();
                     }
-                }
+                }*/
 
                 return $this->redirect(["index"]);
             }
@@ -83,15 +82,15 @@ class DefaultController extends AdminController {
      * @return string|\yii\web\Response
      */
     public function actionUpdate($id) {
-        $model = $this->loadModel($id);
+        $model = SeoUrl::findModel($id);
         $this->pageName = Yii::t('app', 'UPDATE', 0);
-        if (isset($_POST['SeoUrl'])) {
-            $model->attributes = $_POST['SeoUrl'];
+        $post = Yii::$app->request->post();
+        if ($model->load($post) && $model->validate()) {
             /* update url */
             if ($model->save()) {
 
                 /* save or update MetaName */
-                if (isset($_POST['SeoMain'])) {
+                /*if (isset($_POST['SeoMain'])) {
 
                     $items = $_POST['SeoMain'];
                     foreach ($items as $name => $item) {
@@ -110,7 +109,7 @@ class DefaultController extends AdminController {
                     }
                 }
 
-                $this->saveParams($model);
+                $this->saveParams($model);*/
 
 
 
@@ -169,20 +168,6 @@ class DefaultController extends AdminController {
             }
         }
         //   die;
-    }
-
-
-    /**
-     * Returns the data model based on the primary key given in the GET variable.
-     * If the data model is not found, an HTTP exception will be raised.
-     * @param integer the ID of the model to be loaded
-     */
-    public function loadModel($id) {
-        $model = SeoUrl::findOne($id);
-
-        if ($model === null)
-            $this->error404();
-        return $model;
     }
 
     /**
