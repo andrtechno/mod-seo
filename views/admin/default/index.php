@@ -1,22 +1,16 @@
 <?php
 
-use yii\helpers\Html;
-use panix\engine\widgets\Pjax;
+use yii\widgets\Pjax;
 use panix\engine\grid\GridView;
 
-//\panix\engine\assets\ShowLoadingAsset::register($this);
-?>
+if(!Yii::$app->request->isPjax && !Yii::$app->request->isAjax)
+    \yii\helpers\Url::remember();
 
-
-<?php
 
 Pjax::begin([
     'id' => 'pjax-container',
 ]);
-?>
-<?=
-
-GridView::widget([
+echo GridView::widget([
     'tableOptions' => ['class' => 'table table-striped'],
     'dataProvider' => $dataProvider,
     'filterModel' => $searchModel,
@@ -38,5 +32,5 @@ GridView::widget([
         ]
     ]
 ]);
-?>
-<?php Pjax::end(); ?>
+Pjax::end();
+

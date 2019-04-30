@@ -81,7 +81,7 @@ $form = ActiveForm::begin([
 
     </div>
     <div class="card-footer text-center">
-        <?= $model->submitButton(); ?>
+        <?= $model->submitButton(\yii\helpers\Url::previous()); ?>
     </div>
 </div>
 <?php ActiveForm::end(); ?>
