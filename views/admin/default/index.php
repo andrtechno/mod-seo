@@ -24,7 +24,7 @@ echo GridView::widget([
             'class' => 'yii\grid\SerialColumn',
             'contentOptions' => ['class' => 'text-center']
         ],
-        'url',
+        'url:url',
 
         [
             'class' => 'panix\engine\grid\columns\ActionColumn',
