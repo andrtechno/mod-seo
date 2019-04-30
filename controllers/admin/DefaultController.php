@@ -251,7 +251,7 @@ class DefaultController extends AdminController {
     public function getParams() {
         //загружаем модели
         $models = $this->getModels();
-        $params = array();
+        $params = [];
         $i = 0;
 
 

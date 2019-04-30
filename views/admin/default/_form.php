@@ -1,8 +1,6 @@
 <?php
 use yii\helpers\Html;
 use panix\engine\bootstrap\ActiveForm;
-use yii\helpers\ArrayHelper;
-use panix\ext\taginput\TagInput;
 use panix\ext\tinymce\TinyMce;
 
 \panix\mod\seo\SeoAsset::register($this);
@@ -36,41 +34,54 @@ use panix\ext\tinymce\TinyMce;
         $(that).parent().parent().remove();
     }
 </script>
-
-
 <?php
 $form = ActiveForm::begin([
     'title' => Html::encode($this->context->pageName)
 ]);
 ?>
-
-
-<?= $form->field($model, 'url')->textInput() ?>
-<?= $form->field($model, 'title')->textInput() ?>
-<?= $form->field($model, 'description')->textInput() ?>
-<?= $form->field($model, 'h1')->textInput() ?>
-<?= $form->field($model, 'text')->widget(TinyMce::class, [
-    'options' => ['rows' => 6],
-
-]); ?>
-
-
-<div class="form-group">
-    <div class="col-sm-4"></div>
-    <div class="col-sm-8"><?php echo Html::dropDownList('title_param', "param", ArrayHelper::map($this->context->getParams(), "value", "name", 'group'), array("empty" => "Свойства", 'class' => 'selectpicker addparams', 'data-id' => $model->id)); ?>
-        <?php echo $this->render('_formMetaParams', array('model' => $model)); ?></div>
-</div>
-<div class="form-group" style="display:none;">
-    <div class="col-sm-4"><?php echo Html::dropDownList("name", "", array("robots" => "robots", "author" => "author", "copyright" => "copyright"), array("empty" => "change")) ?>
+<div class="card">
+    <div class="card-header">
+        <h5><?= Html::encode($this->context->pageName); ?></h5>
     </div>
-    <div class="col-sm-8">
-        <?php echo Html::button("add meta name", array('class' => "meta-name")); ?>
-        <span id="load-meta-name"></span>
+    <div class="card-body">
+
+
+
+
+
+        <?= $form->field($model, 'url')->textInput() ?>
+        <?= $form->field($model, 'title')->textInput() ?>
+        <?= $form->field($model, 'description')->textInput() ?>
+        <?= $form->field($model, 'h1')->textInput() ?>
+        <?= $form->field($model, 'text')->widget(TinyMce::class, [
+            'options' => ['rows' => 6],
+
+        ]); ?>
+
+
+        <div class="form-group row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-8">
+
+
+                <?php //echo Html::dropDownList('title_param', "param", ArrayHelper::map($this->context->getParams(), "value", "name", 'group'), array("empty" => "Свойства", 'class' => 'selectpicker addparams', 'data-id' => $model->id)); ?>
+                <?php echo $this->render('_formMetaParams', array('model' => $model)); ?></div>
+        </div>
+        <div class="form-group row" style="display:none;">
+            <div class="col-sm-4"><?php echo Html::dropDownList("name", "", ["robots" => "robots", "author" => "author", "copyright" => "copyright"], ["empty" => "change"]) ?>
+            </div>
+            <div class="col-sm-8">
+                <?php echo Html::button("add meta name", array('class' => "meta-name")); ?>
+                <span id="load-meta-name"></span>
+            </div>
+        </div>
+
+
+
+
+    </div>
+    <div class="card-footer text-center">
+        <?= $model->submitButton(); ?>
     </div>
 </div>
-
-<div class="form-group text-center">
-    <?= $model->submitButton(); ?>
-</div>
-
 <?php ActiveForm::end(); ?>

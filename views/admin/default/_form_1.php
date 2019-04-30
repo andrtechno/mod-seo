@@ -1,5 +1,6 @@
 <?php
-
+use yii\widgets\ActiveForm;
+use panix\engine\Html;
 //Yii::app()->clientScript->registerScriptFile($this->module->assetsUrl . '/js/seo.js');
 ?>
 
@@ -43,19 +44,6 @@ $form = $this->beginWidget('CActiveForm', array(
 ?>
 
 
-
-
-
-<div class="form-group">
-    <div class="col-sm-4"><?php echo $form->labelEx($model, 'url', array('class' => 'control-label')); ?></div>
-    <div class="col-sm-8">
-        <?php echo $form->textField($model, 'url', array('size' => 60, 'class' => 'form-control')); ?>
-        <?php echo $form->error($model, 'url'); ?>
-    </div>
-</div>
-
-
-
 <div class="form-group">
     <div class="col-sm-4"><?php echo $form->labelEx($model, 'title', array('class' => 'control-label')); ?></div>
     <div class="col-sm-8">
@@ -86,14 +74,14 @@ $form = $this->beginWidget('CActiveForm', array(
 </div>
 <div class="form-group">
     <div class="col-sm-4"></div>
-    <div class="col-sm-8"><?php echo CHtml::dropDownList('title_param', "param", CHtml::listData($this->getParams(), "value", "name", "group"), array("empty" => "Свойства", 'class' => 'selectpicker addparams', 'data-id' => $model->id)); ?>
+    <div class="col-sm-8"><?php echo Html::dropDownList('title_param', "param", CHtml::listData($this->getParams(), "value", "name", "group"), array("empty" => "Свойства", 'class' => 'selectpicker addparams', 'data-id' => $model->id)); ?>
         <?php echo $this->renderPartial('_formMetaParams', array('model' => $model)); ?></div>
 </div>
 <div class="form-group" style="display:none;">
-    <div class="col-sm-4"><?php echo CHtml::dropDownList("name", "", array("robots" => "robots", "author" => "author", "copyright" => "copyright"), array("empty" => "change")) ?>
+    <div class="col-sm-4"><?php echo Html::dropDownList("name", "", array("robots" => "robots", "author" => "author", "copyright" => "copyright"), array("empty" => "change")) ?>
 </div>
     <div class="col-sm-8">
-        <?php echo CHtml::button("add meta name", array('class' => "meta-name")); ?>
+        <?php echo Html::button("add meta name", array('class' => "meta-name")); ?>
     <span id="load-meta-name"></span>
     </div>
 </div>
@@ -101,14 +89,10 @@ $form = $this->beginWidget('CActiveForm', array(
 
 
 <div class="form-group text-center">
-<?php echo CHtml::submitButton(Yii::t('app', 'SAVE'), array('class' => 'btn btn-success')); ?>
+<?php echo Html::submitButton(Yii::t('app', 'SAVE'), array('class' => 'btn btn-success')); ?>
 </div>
 
 
-
-<?php
-$this->endWidget();
-
-?>
+<?php ActiveForm::end(); ?>
 
 

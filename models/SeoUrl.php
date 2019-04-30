@@ -27,24 +27,36 @@ class SeoUrl extends \panix\engine\db\ActiveRecord {
            // ['url', 'UniqueAttributesValidator', 'with' => 'url'],
             [['title', 'description', 'text'], 'string'],
             ['title', 'string', 'max' => 150],
+            ['meta_robots','default','value'=>null],
+            ['meta_robots', 'robotsValidator'],
         ];
     }
 
+    public function robotsValidator($attribute)
+    {
 
+        if ($this->{$attribute}) {
+            if (count($this->$attribute) <= 2) {
+                $this->$attribute = implode(',', $this->$attribute);
+            } else {
+                $this->addError($attribute, 'Максимальное выбранное значеное 2 шт.');
+            }
+        }
+    }
     public function getParams() {
-        return $this->hasMany(SeoParams::className(), ['url_id' => 'id']);
+        return $this->hasMany(SeoParams::class, ['url_id' => 'id']);
     }
     /**
      * @return array customized attribute labels (name=>label)
      */
     public function attributeLabels() {
-        return array(
+        return [
             'id' => 'ID',
             'url' => Yii::t('seo/default', 'URL'),
             'text' => Yii::t('seo/default', 'TEXT'),
             'description' => Yii::t('seo/default', 'DESCRIPTION'),
             'title' => Yii::t('seo/default', 'TITLE'),
-        );
+        ];
     }
 
 
