@@ -29,8 +29,7 @@ class m190330_115548_seo_url extends Migration
             'description' => $this->text()->null(),
             'meta_robots' => $this->string(16)->null(),
             'h1' => $this->string(255)->null(),
-            'text' => $this->text()->null(),
-
+            'text' => $this->text()->null()
         ], $this->tableOptions);
 
         $this->createIndex('url', SeoUrl::tableName(), 'url');
