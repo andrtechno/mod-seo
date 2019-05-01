@@ -23,7 +23,7 @@ class m190330_115548_seo_url extends Migration
     {
         $this->createTable(SeoUrl::tableName(), [
             'id' => $this->primaryKey()->unsigned(),
-            'url' => $this->string(255)->notNull(),
+            'uri' => $this->string(255)->notNull(),
             'title' => $this->string(150)->null(),
             'domain'=>$this->tinyInteger(1)->defaultValue(1),
             'description' => $this->text()->null(),
@@ -32,14 +32,14 @@ class m190330_115548_seo_url extends Migration
             'text' => $this->text()->null()
         ], $this->tableOptions);
 
-        $this->createIndex('url', SeoUrl::tableName(), 'url');
-
         $settings = [];
         foreach (SettingsForm::defaultSettings() as $key => $value) {
             $settings[] = [SettingsForm::$category, $key, $value];
         }
 
         $this->batchInsert($this->tableName, ['category', 'param', 'value'], $settings);
+
+        $this->createIndex('uri', SeoUrl::tableName(), 'uri');
     }
 
     public function down()
