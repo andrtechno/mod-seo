@@ -14,6 +14,7 @@ namespace panix\mod\seo\migrations;
 use panix\engine\db\Migration;
 use panix\mod\seo\models\SeoUrl;
 use panix\mod\seo\models\SettingsForm;
+use panix\engine\components\Settings;
 
 class m190330_115548_seo_url extends Migration
 {
@@ -39,7 +40,7 @@ class m190330_115548_seo_url extends Migration
             $settings[] = [SettingsForm::$category, $key, $value];
         }
 
-        $this->batchInsert(SettingsForm::$tableName, ['category', 'param', 'value'], $settings);
+        $this->batchInsert(Settings::$tableName, ['category', 'param', 'value'], $settings);
 
 
     }
