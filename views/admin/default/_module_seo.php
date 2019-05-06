@@ -36,3 +36,16 @@ if ($model->isNewRecord) {
         <?= Html::error($modelseo, 'h1'); ?>
     </div>
 </div>
+
+
+<div class="form-group row">
+    <div class="col-sm-4"><?= Html::activeLabel($modelseo, 'text', ['class' => 'col-form-label']); ?></div>
+    <div class="col-sm-8">
+        <?php
+        echo \panix\ext\tinymce\TinyMce::widget([
+            'model' => $modelseo,
+            'attribute' => 'text'
+        ]);
+        ?>
+    </div>
+</div>
