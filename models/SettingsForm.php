@@ -8,6 +8,7 @@ use panix\engine\CMS;
 
 class SettingsForm extends SettingsModel
 {
+    public static $category = 'seo';
     protected $module = 'seo';
     public $googleanalytics_id;
     public $googleanalytics_js;

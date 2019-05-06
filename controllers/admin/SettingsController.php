@@ -28,7 +28,7 @@ class SettingsController extends AdminController {
         return [
             [
                 'label' => Yii::t('seo/default', 'REDIRECTS'),
-                'url' => array('/admin/seo/redirects'),
+                'url' => ['/admin/seo/redirects'],
                 'icon' => Html::icon('refresh'),
 
             ],
