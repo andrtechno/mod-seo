@@ -23,13 +23,10 @@ class SeoBehavior extends Behavior
      */
     public $url;
 
-    public function attach($owner)
-    {
-        if (!$this->url)
-            throw new Exception('err');
-
-        parent::attach($owner);
-    }
+    /**
+     * @var array Old url
+     */
+    private $afterUrl;
 
     public function events()
     {
@@ -37,18 +34,15 @@ class SeoBehavior extends Behavior
             ActiveRecord::EVENT_AFTER_DELETE => 'afterDelete',
             ActiveRecord::EVENT_AFTER_INSERT => 'afterSave',
             ActiveRecord::EVENT_AFTER_UPDATE => 'afterSave',
-            ActiveRecord::EVENT_BEFORE_UPDATE => 'beforeSave',
-            ActiveRecord::EVENT_BEFORE_INSERT => 'beforeSave',
+            ActiveRecord::EVENT_AFTER_FIND => function () {
+                $this->afterUrl = $this->owner->getUrl();
+            },
         ];
     }
-    public $beforeUrl;
-    public function beforeSave()
-    {
-        $owner = $this->owner;
-        $this->beforeUrl = $owner->getUrl();
-        //print_r($this->url);
-        //print_r($owner->getUrl());
-    }
+
+    /**
+     * @return bool
+     */
     public function afterSave()
     {
 
@@ -57,36 +51,22 @@ class SeoBehavior extends Behavior
             if ($owner->isNewRecord) {
                 $seo = new SeoUrl;
             } else {
-                $seo = SeoUrl::find()->where(['url' => Yii::$app->urlManager->createUrl($owner->getUrl())])->one();
+                $url = (Url::to($this->afterUrl) == Url::to($owner->getUrl())) ? $owner->getUrl() : $this->afterUrl;
+                $seo = SeoUrl::find()->where(['url' => Url::to($url)])->one();
                 if (!$seo) {
                     $seo = new SeoUrl;
                 }
             }
-
-
-            //var_dump($owner->getUrl());
-
-            $s = $this->beforeUrl;
-            print_r($s);
-            print_r($owner->getUrl());
-            die;
-
-
-
-            $seo->load(Yii::$app->request->post('SeoUrl'));
-            $old = $seo->oldAttributes;
-
-
+            $seo->load(['SeoUrl' => Yii::$app->request->post('SeoUrl')]);
             $seo->url = Yii::$app->urlManager->createUrl($owner->getUrl());
             // $seo->meta_robots = null;
             $seo->save(false);
-
             return true;
         }
     }
 
     /**
-     * @return mixed
+     * @return bool
      */
     public function afterDelete()
     {
