@@ -59,7 +59,7 @@ class SeoBehavior extends Behavior
             }
             $seo->load(['SeoUrl' => Yii::$app->request->post('SeoUrl')]);
             $seo->url = Yii::$app->urlManager->createUrl($owner->getUrl());
-            // $seo->meta_robots = null;
+            $seo->meta_robots = null;
             $seo->save(false);
             return true;
         }

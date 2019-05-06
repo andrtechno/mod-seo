@@ -5,12 +5,9 @@ use panix\ext\tinymce\TinyMce;
 
 \panix\mod\seo\SeoAsset::register($this);
 
-?>
 
 
-<script>
-    $(function () {
-
+$this->registerJs("
         jQuery.fn.exists = function () {
             return this.length > 0;
         };
@@ -20,24 +17,25 @@ use panix\ext\tinymce\TinyMce;
             var id = $(this).attr('data-id');
             var text = $('option:selected', this).text();
             rowID = text + id;
-            rowID = rowID.replace(".", "");
+            rowID = rowID.replace(\".\", \"\");
             if (!$('#' + rowID).exists()) {
-                $('#container-param-' + id).append('<tr id="' + rowID + '"><td><input type="hidden" name="param[' + id + '][' + val + ']" value="{' + text + '}" /><code>{' + text + '}</code></td><td class="text-center"><a href="javascript:void(0);" onclick="removeParam(this);" class="btn btn-xs btn-danger"><i class="icon-delete"></i></a></td></tr>');
+                $('#container-param-' + id).append('<tr id=\"' + rowID + '\"><td><input type=\"hidden\" name=\"param[' + id + '][' + val + ']\" value=\"{' + text + '}\" /><code>{' + text + '}</code></td><td class=\"text-center\"><a href=\"javascript:void(0);\" onclick=\"removeParam(this);\" class=\"btn btn-xs btn-danger\"><i class=\"icon-delete\"></i></a></td></tr>');
             } else {
                 common.notify('Уже добавлен!', 'error');
             }
 
         });
-    });
 
     function removeParam(that) {
         $(that).parent().parent().remove();
     }
-</script>
+    
+");
+?>
+
+
 <?php
-$form = ActiveForm::begin([
-    'title' => Html::encode($this->context->pageName)
-]);
+$form = ActiveForm::begin();
 ?>
 <div class="card">
     <div class="card-header">
@@ -47,9 +45,14 @@ $form = ActiveForm::begin([
 
 
 
-
-
         <?= $form->field($model, 'url')->textInput() ?>
+        <?= $form->field($model, 'meta_robots')->checkboxList([
+            'index'=>'index',
+            'follow'=>'follow',
+            'noindex'=>'noindex',
+            'nofollow'=>'nofollow'
+        ]) ?>
+
         <?= $form->field($model, 'title')->textInput() ?>
         <?= $form->field($model, 'description')->textInput() ?>
         <?= $form->field($model, 'h1')->textInput() ?>

@@ -4,10 +4,12 @@ namespace panix\mod\seo\models;
 
 use Yii;
 use panix\mod\seo\models\SeoParams;
+use panix\engine\db\ActiveRecord;
 
-class SeoUrl extends \panix\engine\db\ActiveRecord
+class SeoUrl extends ActiveRecord
 {
 
+    const MODULE_ID = 'seo';
 
     /**
      * @return string the associated database table name
@@ -35,19 +37,19 @@ class SeoUrl extends \panix\engine\db\ActiveRecord
             [['title', 'description', 'text', 'h1'], 'string'],
             ['title', 'string', 'max' => 150],
             ['url', 'trim'],
-            ['meta_robots', 'default', 'value' => null],
+            //['meta_robots', 'default', 'value' => null],
             ['meta_robots', 'robotsValidator'],
         ];
     }
 
     public function robotsValidator($attribute)
     {
-
-        if ($this->{$attribute}) {
-            if (count($this->$attribute) <= 2) {
-                $this->$attribute = implode(',', $this->$attribute);
+        $list = $this->{$attribute};
+        if (is_array($list)) {
+            if (count($list) <= 2) {
+                $this->{$attribute} = implode(',', $list);
             } else {
-                $this->addError($attribute, 'Максимальное выбранное значеное 2 шт.');
+                $this->addError($attribute, self::t('ERROR_ROBOTS'));
             }
         }
     }
@@ -57,10 +59,31 @@ class SeoUrl extends \panix\engine\db\ActiveRecord
         return $this->hasMany(SeoParams::class, ['url_id' => 'id']);
     }
 
+    public function beforeSave($insert)
+    {
+        //$this->domain = static::getDomainId();
+        return parent::beforeSave($insert);
+    }
+
+    public function afterFind()
+    {
+        if (!$this->getIsNewRecord()) {
+            if ($this->meta_robots) {
+                $this->meta_robots = explode(',', $this->meta_robots);
+            }
+        }
+        parent::afterFind();
+    }
+
+    public static function getDomainId()
+    {
+        return array_search(str_replace('www.', '', Yii::$app->request->serverName), Yii::$app->params['domains']);
+    }
+
     /**
      * @return array customized attribute labels (name=>label)
      */
-    public function attributeLabels()
+    public function attributeLabels2()
     {
         return [
             'id' => 'ID',

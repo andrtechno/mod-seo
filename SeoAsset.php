@@ -2,12 +2,13 @@
 
 namespace panix\mod\seo;
 
-class SeoAsset extends \yii\web\AssetBundle {
+use panix\engine\web\AssetBundle;
 
-    public $jsOptions = array(
-        'position' => \yii\web\View::POS_HEAD
-    );
+
+class SeoAsset extends AssetBundle {
+
     public $sourcePath = __DIR__.'/assets';
+
     public $js = [
         'js/seo.js',
     ];

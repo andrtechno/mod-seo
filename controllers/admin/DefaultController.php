@@ -10,19 +10,23 @@ use panix\mod\seo\models\SeoParams;
 use panix\engine\controllers\AdminController;
 use yii\helpers\Url;
 
-class DefaultController extends AdminController {
+class DefaultController extends AdminController
+{
 
-    public function actions() {
+    public function actions()
+    {
         return array(
             'delete' => array(
                 'class' => 'ext.adminList.actions.DeleteAction',
             ),
         );
     }
+
     /**
      * Manages all models.
      */
-    public function actionIndex() {
+    public function actionIndex()
+    {
         $this->pageName = Yii::t('seo/default', 'MODULE_NAME');
         $this->buttons = [
             [
@@ -47,7 +51,8 @@ class DefaultController extends AdminController {
         ]);
     }
 
-    public function actionCreate() {
+    public function actionCreate()
+    {
         $model = new SeoUrl;
         $this->pageName = Yii::t('app', 'CREATE', 1);
 
@@ -72,7 +77,7 @@ class DefaultController extends AdminController {
         }
 
         return $this->render('create', array(
-                    'model' => $model,
+            'model' => $model,
         ));
     }
 
@@ -82,49 +87,53 @@ class DefaultController extends AdminController {
      * @param integer $id the ID of the model to be updated
      * @return string|\yii\web\Response
      */
-    public function actionUpdate($id) {
+    public function actionUpdate($id)
+    {
         $model = SeoUrl::findModel($id);
         $this->pageName = Yii::t('app', 'UPDATE', 0);
         $post = Yii::$app->request->post();
-        if ($model->load($post) && $model->validate()) {
+        if ($model->load($post)) {
             /* update url */
-            if ($model->save()) {
+            if ($model->validate()) {
+                if ($model->save()) {
 
-                /* save or update MetaName */
-                /*if (isset($_POST['SeoMain'])) {
+                    /* save or update MetaName */
+                    /*if (isset($_POST['SeoMain'])) {
 
-                    $items = $_POST['SeoMain'];
-                    foreach ($items as $name => $item) {
+                        $items = $_POST['SeoMain'];
+                        foreach ($items as $name => $item) {
 
-                        if (isset($item['id'])) {
-                            $mod = SeoMain::model()->findByPk($item['id']);
-                        } else {
+                            if (isset($item['id'])) {
+                                $mod = SeoMain::model()->findByPk($item['id']);
+                            } else {
 
-                            $mod = new SeoMain();
-                            $mod->name = $name;
-                            $mod->url = $model->id;
+                                $mod = new SeoMain();
+                                $mod->name = $name;
+                                $mod->url = $model->id;
+                            }
+
+                            $mod->attributes = $item;
+                            $mod->save(false, false);
                         }
-
-                        $mod->attributes = $item;
-                        $mod->save(false, false);
                     }
+
+                    $this->saveParams($model);*/
+
+                    $redirect = (isset($post['redirect'])) ? $post['redirect'] : Yii::$app->request->url;
+                    if (!Yii::$app->request->isAjax)
+                        return $this->redirect($redirect);
+
                 }
-
-                $this->saveParams($model);*/
-
-                $redirect = (isset($post['redirect'])) ? $post['redirect'] : Yii::$app->request->url;
-                if (!Yii::$app->request->isAjax)
-                    return $this->redirect($redirect);
-
             }
         }
 
         return $this->render('update', array(
-                    'model' => $model,
+            'model' => $model,
         ));
     }
 
-    protected function saveParams($model) {
+    protected function saveParams($model)
+    {
         $dontDelete = array();
 
         if (!empty($_POST['param'])) {
@@ -134,12 +143,12 @@ class DefaultController extends AdminController {
 
                 $i = 0;
                 foreach ($object as $key => $item) {
-                    $ex = explode('|',$item);
+                    $ex = explode('|', $item);
                     $variant = SeoParams::find()->where(array(
                         'url_id' => $main_id,
                         'param' => $item,
                         //'obj' => $key,
-                        'modelClass'=>$ex[0]
+                        'modelClass' => $ex[0]
                     ))->one();
                     // If not - create new.
                     if (!$variant)
@@ -148,9 +157,9 @@ class DefaultController extends AdminController {
                     $variant->setAttributes(array(
                         'url_id' => $main_id,
                         'param' => $item,
-                       // 'obj' => $key,
-                        'modelClass'=>$ex[0]
-                            ), false);
+                        // 'obj' => $key,
+                        'modelClass' => $ex[0]
+                    ), false);
 
                     $variant->save(false);
                     array_push($dontDelete, $variant->id);
@@ -159,13 +168,13 @@ class DefaultController extends AdminController {
 
 
                 if (!empty($dontDelete)) {
-         
-                    
-                    SeoParams::deleteAll(
-                            ['AND', 'url_id=:id',['NOT IN', 'id', $dontDelete]], [':id' => $main_id]);
-                } else{
 
-                    SeoParams::find()->where(['url_id'=>$main_id])->deleteAll();
+
+                    SeoParams::deleteAll(
+                        ['AND', 'url_id=:id', ['NOT IN', 'id', $dontDelete]], [':id' => $main_id]);
+                } else {
+
+                    SeoParams::find()->where(['url_id' => $main_id])->deleteAll();
                 }
             }
         }
@@ -175,7 +184,8 @@ class DefaultController extends AdminController {
     /**
      * Получение списка всех моделей в проекте
      */
-    public function getModels() {
+    public function getModels()
+    {
         $file_list = [];
         //путь к директории с проектами
         //$file_list = scandir(Yii::getPathOfAlias('application.modules.news.models'));
@@ -189,26 +199,26 @@ class DefaultController extends AdminController {
                     $file_list[$mod] = scandir(Yii::getAlias("@vendor/panix/mod-{$mod}/models"));
                 }
             }
-         /*   if (!in_array($mod, ['admin', 'seo', 'user', 'install', 'stats'])) {
-                if (file_exists(Yii::getAlias("@vendor/panix/mod-{$mod}/models"))) {
-                    $file_list[$mod] = \yii\helpers\FileHelper::findFiles(Yii::getAlias("@vendor/panix/mod-{$mod}/models"), [
-                                'only' => ['*.php'],
-                        'recursive'=>false
-                    ]);
-                }
-            }*/
+            /*   if (!in_array($mod, ['admin', 'seo', 'user', 'install', 'stats'])) {
+                   if (file_exists(Yii::getAlias("@vendor/panix/mod-{$mod}/models"))) {
+                       $file_list[$mod] = \yii\helpers\FileHelper::findFiles(Yii::getAlias("@vendor/panix/mod-{$mod}/models"), [
+                                   'only' => ['*.php'],
+                           'recursive'=>false
+                       ]);
+                   }
+               }*/
 
             //если найдены файлы
             if (isset($file_list[$mod])) {
                 if (count($file_list[$mod])) {
                     foreach ($file_list[$mod] as $file) {
 
-                       if ($file != '.' && $file != '..' && !preg_match('/Translate|Query|Node|Search/', $file)) {// исключаем папки с назварием '.' и '..'
+                        if ($file != '.' && $file != '..' && !preg_match('/Translate|Query|Node|Search/', $file)) {// исключаем папки с назварием '.' и '..'
                             // Yii::import("mod.{$mod}.models.{$file}");
                             $ext = explode(".", $file);
-   
+
                             $model = $ext[0];
-                             $className= "\\panix\\mod\\{$mod}\\models\\{$model}";
+                            $className = "\\panix\\mod\\{$mod}\\models\\{$model}";
                             //  $run = new $className;
                             //  if ($run instanceof \panix\engine\db\ActiveRecord) {
                             //проверяем чтобы модели были с расширением php
@@ -216,8 +226,8 @@ class DefaultController extends AdminController {
                                 if ($ext[1] == "php") {
                                     $models[] = array(
                                         'model' => $model,
-                                            //  'path' => "//panix//mod//{$mod}//models",
-                                            'className'=>$className
+                                        //  'path' => "//panix//mod//{$mod}//models",
+                                        'className' => $className
                                     );
                                     //  $models[] = "mod.{$mod}.models";
                                 }
@@ -235,7 +245,8 @@ class DefaultController extends AdminController {
     /**
      * Получение списка артибутов всех моделей
      */
-    public function getParams() {
+    public function getParams()
+    {
         //загружаем модели
         $models = $this->getModels();
         $params = [];
@@ -243,8 +254,8 @@ class DefaultController extends AdminController {
 
 
         if (count($models)) {
-          //  print_r($models);
-          //  die;
+            //  print_r($models);
+            //  die;
             foreach ($models as $model) {
                 $className = $model['className'];
                 $mdl = new $className;
@@ -317,7 +328,8 @@ class DefaultController extends AdminController {
      * add to Form, fields for MetaName
      */
 
-    public function actionAddmetaname() {
+    public function actionAddmetaname()
+    {
         $model = new SeoMain;
         $model->name = $_POST['name'];
         $this->renderPartial("_formMetaName", array('model' => $model));
@@ -328,7 +340,8 @@ class DefaultController extends AdminController {
      * delete MetaName
      */
 
-    public function actionDeletemetaname() {
+    public function actionDeletemetaname()
+    {
         SeoMain::model()->findByPk($_POST['id'])->delete();
     }
 
@@ -337,7 +350,8 @@ class DefaultController extends AdminController {
      * add to Form, fields for MetaProperty
      */
 
-    public function actionAddmetaproperty() {
+    public function actionAddmetaproperty()
+    {
         $model = new SeoParams();
         $this->renderPartial("_formMetaParams", array('model' => $model, 'count' => $_POST['count']));
     }
@@ -347,11 +361,13 @@ class DefaultController extends AdminController {
      * delete MetaProperty
      */
 
-    public function actionDeleteMetaProperty() {
+    public function actionDeleteMetaProperty()
+    {
         SeoParams::model()->findByPk($_POST['id'])->delete();
     }
 
-    public function getAddonsMenu() {
+    public function getAddonsMenu()
+    {
         return array(
             array(
                 'label' => Yii::t('app', 'SETTINGS'),
