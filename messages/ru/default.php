@@ -9,6 +9,7 @@ return array(
     'H1' => 'Заголовок h1',
     'DESCRIPTION' => 'SEO description',
     'TITLE' => 'SEO заголовок title',
+    'TAB_SEO' => 'SEO',
     'LANGUAGE' => 'Язык',
     'REDIRECTS' => 'Перенаправление',
     'REDIRECT_FROM' => 'Перенаправлять с ссылки',
