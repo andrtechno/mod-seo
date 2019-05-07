@@ -4,7 +4,6 @@ namespace panix\mod\seo\plugins;
 
 use Yii;
 use yii\helpers\Url;
-use yii\web\Application;
 
 /**
  * Class SeoPlugin
@@ -34,7 +33,8 @@ class SeoPlugin
     public static function title()
     {
         $title = Yii::$app->settings->get('app', 'sitename');
-        if (Yii::$app instanceof Application === true) {
+        if (Yii::$app instanceof \yii\web\Application === true) {
+            die('zz');
             if (Yii::$app->request->get('page') !== null) {
                 Yii::$app->view->title .= Yii::t(
                     'seo/default',
