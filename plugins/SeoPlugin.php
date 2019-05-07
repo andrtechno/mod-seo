@@ -20,9 +20,7 @@ class SeoPlugin
         $redirectList = ['/index.php', '/site', '/site/index'];
         $request = Yii::$app->request->url;
         if (in_array($request, $redirectList)) {
-
             return Yii::$app->response->redirect(Url::to('/'), 301);
-
         }
     }
 
@@ -34,7 +32,6 @@ class SeoPlugin
     {
         $title = Yii::$app->settings->get('app', 'sitename');
         if (Yii::$app instanceof \yii\web\Application === true) {
-            die('zz');
             if (Yii::$app->request->get('page') !== null) {
                 Yii::$app->view->title .= Yii::t(
                     'seo/default',
