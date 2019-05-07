@@ -27,7 +27,7 @@ class m190330_115548_seo_url extends Migration
             'url' => $this->string(255)->notNull(),
             'title' => $this->string(150)->null(),
             'domain'=>$this->tinyInteger(1)->defaultValue(1),
-            'description' => $this->text()->null(),
+            'description' => $this->string(255)->null(),
             'meta_robots' => $this->string(16)->null(),
             'h1' => $this->string(255)->null(),
             'text' => $this->text()->null()
