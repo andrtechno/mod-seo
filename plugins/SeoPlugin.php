@@ -31,6 +31,8 @@ class SeoPlugin
     public static function title()
     {
         $title = Yii::$app->settings->get('app', 'sitename');
+        $seo_config = Yii::$app->settings->get('seo');
+
         if (Yii::$app instanceof \yii\web\Application === true) {
             if (Yii::$app->request->get('page') !== null) {
                 Yii::$app->view->title .= Yii::t(
@@ -40,8 +42,8 @@ class SeoPlugin
                 );
             }
             if (!empty(Yii::$app->view->title)) {
-                Yii::$app->view->title .= ' / ' . $title;
-            }else{
+                Yii::$app->view->title .= ' ' . $seo_config->title_prefix . ' ' . $title;
+            } else {
                 Yii::$app->view->title .= $title;
             }
         }
