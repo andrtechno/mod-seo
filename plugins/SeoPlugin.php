@@ -47,8 +47,6 @@ class SeoPlugin
                 Yii::$app->view->title .= $title;
             }
         }
-
     }
-
 
 }
