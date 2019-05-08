@@ -110,17 +110,17 @@ class RedirectsController extends AdminController
 
     public function getAddonsMenu()
     {
-        return array(
-            array(
+        return [
+            [
                 'label' => Yii::t('app', 'SETTINGS'),
                 'url' => array('/admin/seo/settings'),
                 'icon' => Html::icon('settings'),
-            ),
-            array(
+            ],
+            [
                 'label' => Yii::t('seo/default', 'REDIRECTS'),
                 'url' => array('/admin/seo/redirects'),
                 'icon' => Html::icon('refresh'),
-            ),
-        );
+            ],
+        ];
     }
 }
