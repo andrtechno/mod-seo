@@ -41,11 +41,14 @@ class SeoPlugin
                     ['page' => (int)Yii::$app->request->get('page')]
                 );
             }
+
             if (!empty(Yii::$app->view->title)) {
                 Yii::$app->view->title .= ' ' . $seo_config->title_prefix . ' ' . $title;
             } else {
                 Yii::$app->view->title .= $title;
             }
+
+
         }
     }
 
