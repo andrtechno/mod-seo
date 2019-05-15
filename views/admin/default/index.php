@@ -25,7 +25,16 @@ echo GridView::widget([
             'contentOptions' => ['class' => 'text-center']
         ],
         'url:url',
-
+        'title' => [
+            'attribute' => 'title',
+            'format' => 'html',
+            'contentOptions' => ['class' => 'text-left'],
+        ],
+        'description' => [
+            'attribute' => 'description',
+            'format' => 'html',
+            'contentOptions' => ['class' => 'text-left'],
+        ],
         [
             'class' => 'panix\engine\grid\columns\ActionColumn',
             'template' => '{update} {switch} {delete}',
