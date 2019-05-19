@@ -19,8 +19,8 @@ class SettingsForm extends SettingsModel
     public $yandex_verification;
     public $title_prefix;
     public $robots;
-
     public $path_robots;
+    public $nested_url;
 
     public function init()
     {
@@ -63,6 +63,7 @@ class SettingsForm extends SettingsModel
             'title_prefix' => '/',
             'googleanalytics_id' => null,
             'google_tag_manager' => null,
+            'nested_url'=>false,
             'canonical' => true,
             'google_site_verification' => '',
             'yandex_verification' => '',
@@ -85,7 +86,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     {
         return [
             ['title_prefix', 'required'],
-            ['canonical', 'boolean'],
+            [['canonical','nested_url'], 'boolean'],
             ['google_tag_manager', 'match', 'pattern' => '/GTM-[A-Z0-9]{7}/i'],
             ['google_tag_manager', 'string', 'max' => 11, 'min' => 11],
             ['googleanalytics_id', 'string', 'max' => 13, 'min' => 13],
