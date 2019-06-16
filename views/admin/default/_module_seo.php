@@ -15,23 +15,23 @@ if ($model->isNewRecord) {
 ?>
 
 <div class="form-group row">
-    <div class="col-sm-4"><?= Html::activeLabel($modelseo, 'title', ['class' => 'col-form-label']); ?></div>
-    <div class="col-sm-8">
+    <div class="col-sm-4 col-lg-2"><?= Html::activeLabel($modelseo, 'title', ['class' => 'col-form-label']); ?></div>
+    <div class="col-sm-8 col-lg-10">
         <?= Html::activeTextInput($modelseo, 'title', ['class' => 'form-control']); ?>
         <?= Html::error($modelseo, 'title'); ?>
     </div>
 </div>
 <div class="form-group row">
-    <div class="col-sm-4"><?= Html::activeLabel($modelseo, 'description', ['class' => 'col-form-label']); ?></div>
-    <div class="col-sm-8">
+    <div class="col-sm-4 col-lg-2"><?= Html::activeLabel($modelseo, 'description', ['class' => 'col-form-label']); ?></div>
+    <div class="col-sm-8 col-lg-10">
         <?= Html::activeTextarea($modelseo, 'description', ['class' => 'form-control']); ?>
         <?= Html::error($modelseo, 'description'); ?>
     </div>
 </div>
 
 <div class="form-group row">
-    <div class="col-sm-4"><?= Html::activeLabel($modelseo, 'h1', ['class' => 'col-form-label']); ?></div>
-    <div class="col-sm-8">
+    <div class="col-sm-4 col-lg-2"><?= Html::activeLabel($modelseo, 'h1', ['class' => 'col-form-label']); ?></div>
+    <div class="col-sm-8 col-lg-10">
         <?= Html::activeTextInput($modelseo, 'h1', ['class' => 'form-control']); ?>
         <?= Html::error($modelseo, 'h1'); ?>
     </div>
@@ -39,8 +39,8 @@ if ($model->isNewRecord) {
 
 
 <div class="form-group row">
-    <div class="col-sm-4"><?= Html::activeLabel($modelseo, 'text', ['class' => 'col-form-label']); ?></div>
-    <div class="col-sm-8">
+    <div class="col-sm-4 col-lg-2"><?= Html::activeLabel($modelseo, 'text', ['class' => 'col-form-label']); ?></div>
+    <div class="col-sm-8 col-lg-10">
         <?php
         echo \panix\ext\tinymce\TinyMce::widget([
             'model' => $modelseo,
