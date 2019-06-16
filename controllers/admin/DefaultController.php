@@ -15,11 +15,12 @@ class DefaultController extends AdminController
 
     public function actions()
     {
-        return array(
-            'delete' => array(
-                'class' => 'ext.adminList.actions.DeleteAction',
-            ),
-        );
+        return [
+            'delete' => [
+                'class' => \panix\engine\actions\DeleteAction::class,
+                'modelClass' => SeoUrl::class,
+            ],
+        ];
     }
 
     /**
