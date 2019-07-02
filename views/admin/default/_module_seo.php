@@ -2,7 +2,7 @@
 
 use panix\mod\seo\models\SeoUrl;
 use panix\engine\Html;
-use panix\ext\taginput\TagInput;
+
 
 if ($model->isNewRecord) {
     $modelseo = new SeoUrl;
@@ -12,6 +12,7 @@ if ($model->isNewRecord) {
         $modelseo = new SeoUrl;
     }
 }
+
 ?>
 
 <div class="form-group row">
@@ -47,5 +48,19 @@ if ($model->isNewRecord) {
             'attribute' => 'text'
         ]);
         ?>
+    </div>
+</div>
+
+
+<div class="form-group row">
+    <div class="col-sm-4 col-lg-2"><?= Html::activeLabel($modelseo, 'meta_robots', ['class' => 'col-form-label2']); ?></div>
+    <div class="col-sm-8 col-lg-10">
+        <?= Html::activeCheckboxList($modelseo, 'meta_robots', [
+            'index' => 'index',
+            'follow' => 'follow',
+            'noindex' => 'noindex',
+            'nofollow' => 'nofollow'
+        ], ['class' => 'form-control']); ?>
+        <?= Html::error($modelseo, 'meta_robots'); ?>
     </div>
 </div>
