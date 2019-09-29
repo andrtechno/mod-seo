@@ -31,7 +31,6 @@ class m190330_120130_seo_redirect extends Migration
     public function down()
     {
         $this->dropTable(Redirects::tableName());
-        return false;
     }
 
 }

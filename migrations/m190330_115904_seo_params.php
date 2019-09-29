@@ -27,9 +27,7 @@ class m190330_115904_seo_params extends Migration {
     }
 
     public function down() {
-        echo "m190330_115904_seo_params cannot be reverted.\n";
         $this->dropTable(SeoParams::tableName());
-        return false;
     }
 
 }

@@ -40,16 +40,14 @@ class m190330_115548_seo_url extends Migration
             $settings[] = [SettingsForm::$category, $key, $value];
         }
 
-        $this->batchInsert(Settings::$tableName, ['category', 'param', 'value'], $settings);
+        $this->batchInsert(Settings::tableName(), ['category', 'param', 'value'], $settings);
 
 
     }
 
     public function down()
     {
-        echo "m190330_115548_seo_url cannot be reverted.\n";
         $this->dropTable(SeoUrl::tableName());
-        return false;
     }
 
 }
