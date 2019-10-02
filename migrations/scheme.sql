@@ -38,18 +38,3 @@ CREATE TABLE `{prefix}redirects` (
 ) ENGINE=InnoDB DEFAULT CHARSET={charset};
 
 
-
-INSERT INTO `{prefix}authitem` (`name`, `type`, `description`, `bizrule`, `data`) VALUES
-('Seo.Default.*', 1, 'SEO (*)', NULL, 'N;'),
-('Seo.Default.Index', 0, 'Список SEO ссылок', NULL, 'N;'),
-('Seo.Default.Delete', 0, 'Удаление SEO ссылок', NULL, 'N;'),
-('Seo.Default.Update', 0, 'Редактирование SEO ссылок', NULL, 'N;'),
-('Seo.Default.Create', 0, 'Добавление SEO ссылок', NULL, 'N;'),
-('Seo.Redirects.*', 1, 'SEO Редирект (*)', NULL, 'N;'),
-('Seo.Redirects.Index', 0, 'Список редиректов', NULL, 'N;'),
-('Seo.Redirects.Delete', 0, 'Удаление редиректов', NULL, 'N;'),
-('Seo.Redirects.Update', 0, 'Редактирование редиректа', NULL, 'N;'),
-('Seo.Redirects.Create', 0, 'Добавление редиректа', NULL, 'N;'),
-('Seo.Redirects.Switch', 0, 'Скрыть/показать редирект', NULL, 'N;'),
-('Seo.Settings.*', 1, 'Настройки SEO (*)', NULL, 'N;'),
-('Seo.Settings.Index', 0, 'Настройки SEO', NULL, 'N;');
