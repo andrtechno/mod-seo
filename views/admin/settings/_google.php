@@ -9,17 +9,17 @@
 
 <?= $form->field($model, 'google_tag_manager')
     ->hint('Example: GTM-ABC1234')
-    ->textInput(['maxlength'=>11]); ?>
+    ->textInput(['maxlength' => 11]); ?>
 
 <?= $form->field($model, 'google_tag_manager_js')
-    ->textarea(['rows'=>5])
-    ->hint('<code>{CODE}</code> - GTM-ABC1234');; ?>
+    ->textarea(['rows' => 5])
+    ->hint('<code>{code}</code> - GTM-ABC1234');; ?>
 
 <?= $form->field($model, 'googleanalytics_id')
     ->hint('Example: UA-1234567-00')
-    ->textInput(['maxlength'=>13]); ?>
+    ->textInput(['maxlength' => 13]); ?>
 
 <?= $form->field($model, 'googleanalytics_js')
-    ->textarea(['rows'=>6])
-    ->hint('<code>{CODE}</code> - UA-1234567-00'); ?>
+    ->textarea(['rows' => 6])
+    ->hint('<code>{code}</code> - UA-1234567-00'); ?>
 
