@@ -10,9 +10,10 @@ if (!Yii::$app->request->isPjax && !Yii::$app->request->isAjax)
 
 
 Pjax::begin([
-    'id' => 'pjax-container',
+    'id' => 'pjax-grid-seo',
 ]);
 echo GridView::widget([
+    'id'=>'grid-seo',
     'tableOptions' => ['class' => 'table table-striped'],
     'dataProvider' => $dataProvider,
     'filterModel' => $searchModel,

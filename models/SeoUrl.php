@@ -6,6 +6,19 @@ use Yii;
 use panix\mod\seo\models\SeoParams;
 use panix\engine\db\ActiveRecord;
 
+/**
+ * Class SeoUrl
+ *
+ * @property integer $id
+ * @property string $url
+ * @property string $title
+ * @property string $meta_robots
+ * @property string $h1
+ * @property string $text
+ * @property string $description
+ *
+ * @package panix\mod\seo\models
+ */
 class SeoUrl extends ActiveRecord
 {
 
