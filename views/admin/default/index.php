@@ -2,8 +2,10 @@
 
 use yii\widgets\Pjax;
 use panix\engine\grid\GridView;
+use panix\engine\Html;
 
-if(!Yii::$app->request->isPjax && !Yii::$app->request->isAjax)
+
+if (!Yii::$app->request->isPjax && !Yii::$app->request->isAjax)
     \yii\helpers\Url::remember();
 
 
@@ -24,7 +26,14 @@ echo GridView::widget([
             'class' => 'yii\grid\SerialColumn',
             'contentOptions' => ['class' => 'text-center']
         ],
-        'url:url',
+        'url' => [
+            'attribute' => 'url',
+            'format' => 'html',
+            'contentOptions' => ['class' => 'text-left'],
+            'value' => function ($model) {
+                return Html::a($model->url, $model->url, ['target' => '_blank','data-pjax'=>'0']);
+            }
+        ],
         'title' => [
             'attribute' => 'title',
             'format' => 'html',

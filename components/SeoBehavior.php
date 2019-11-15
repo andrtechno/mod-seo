@@ -35,7 +35,9 @@ class SeoBehavior extends Behavior
             ActiveRecord::EVENT_AFTER_INSERT => 'afterSave',
             ActiveRecord::EVENT_AFTER_UPDATE => 'afterSave',
             ActiveRecord::EVENT_AFTER_FIND => function () {
-                $this->afterUrl = $this->owner->getUrl();
+                if (method_exists($this->owner, 'getUrl')) {
+                    $this->afterUrl = $this->owner->getUrl();
+                }
             },
         ];
     }

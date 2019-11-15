@@ -52,36 +52,6 @@ class DefaultController extends AdminController
         ]);
     }
 
-    public function actionCreate()
-    {
-        $model = new SeoUrl;
-        $this->pageName = Yii::t('app', 'CREATE', 1);
-
-
-        $post = Yii::$app->request->post();
-        if ($model->load($post) && $model->validate()) {
-            if ($model->save()) {
-                /* save MetaName */
-                /*if (isset($_POST['SeoMain'])) {
-                    $items = $_POST['SeoMain'];
-                    foreach ($items as $name => $item) {
-                        $mod = new SeoMain();
-                        $mod->name = $name;
-                        $mod->url = $model->id;
-                        $mod->attributes = $item;
-                        $mod->save();
-                    }
-                }*/
-
-                return $this->redirect(["index"]);
-            }
-        }
-
-        return $this->render('create', array(
-            'model' => $model,
-        ));
-    }
-
     /**
      * Updates a particular model.
      * If update is successful, the browser will be redirected to the 'view' page.
@@ -91,9 +61,21 @@ class DefaultController extends AdminController
     public function actionUpdate($id)
     {
         $model = SeoUrl::findModel($id);
-        $this->pageName = Yii::t('app', 'UPDATE', 0);
+        $this->pageName = Yii::t('app', 'UPDATE');
         $post = Yii::$app->request->post();
         $isNew = $model->isNewRecord;
+
+
+
+        $this->breadcrumbs[] = [
+            'label' => $this->module->info['label'],
+            'url' => $this->module->info['url'],
+        ];
+
+        $this->breadcrumbs[] = $this->pageName;
+
+
+
         if ($model->load($post)) {
             /* update url */
             if ($model->validate()) {
@@ -147,22 +129,22 @@ class DefaultController extends AdminController
                 $i = 0;
                 foreach ($object as $key => $item) {
                     $ex = explode('|', $item);
-                    $variant = SeoParams::find()->where(array(
+                    $variant = SeoParams::find()->where([
                         'url_id' => $main_id,
                         'param' => $item,
                         //'obj' => $key,
                         'modelClass' => $ex[0]
-                    ))->one();
+                    ])->one();
                     // If not - create new.
                     if (!$variant)
                         $variant = new SeoParams();
 
-                    $variant->setAttributes(array(
+                    $variant->setAttributes([
                         'url_id' => $main_id,
                         'param' => $item,
                         // 'obj' => $key,
                         'modelClass' => $ex[0]
-                    ), false);
+                    ], false);
 
                     $variant->save(false);
                     array_push($dontDelete, $variant->id);
