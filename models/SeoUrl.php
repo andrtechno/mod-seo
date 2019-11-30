@@ -35,13 +35,6 @@ class SeoUrl extends ActiveRecord
         return '{{%seo_url}}';
     }
 
-    public function defaultScope()
-    {
-        return array(
-            'order' => 'id DESC'
-        );
-    }
-
     /**
      * @return array validation rules for model attributes.
      */
@@ -95,20 +88,5 @@ class SeoUrl extends ActiveRecord
     {
         return array_search(str_replace('www.', '', Yii::$app->request->serverName), Yii::$app->params['domains']);
     }
-
-    /**
-     * @return array customized attribute labels (name=>label)
-     */
-    public function attributeLabels2()
-    {
-        return [
-            'id' => 'ID',
-            'url' => Yii::t('seo/default', 'URL'),
-            'text' => Yii::t('seo/default', 'TEXT'),
-            'description' => Yii::t('seo/default', 'DESCRIPTION'),
-            'title' => Yii::t('seo/default', 'TITLE'),
-        ];
-    }
-
 
 }
