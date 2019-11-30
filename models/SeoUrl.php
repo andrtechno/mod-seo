@@ -10,6 +10,9 @@ use panix\engine\db\ActiveRecord;
  * Class SeoUrl
  *
  * @property integer $id
+ * @property integer $owner_id
+ * @property string $handler_hash
+ * @property string $handler_class
  * @property string $url
  * @property string $title
  * @property string $meta_robots

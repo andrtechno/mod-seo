@@ -2,14 +2,18 @@
 
 namespace panix\mod\seo\components;
 
+
 use Yii;
-use yii\base\Exception;
 use yii\db\ActiveRecord;
-use panix\mod\seo\models\SeoMain;
 use panix\mod\seo\models\SeoUrl;
 use yii\helpers\Url;
 use yii\base\Behavior;
+use panix\engine\CMS;
 
+/**
+ * Class SeoBehavior
+ * @package panix\mod\seo\components
+ */
 class SeoBehavior extends Behavior
 {
 
@@ -27,6 +31,7 @@ class SeoBehavior extends Behavior
      * @var array Old url
      */
     private $afterUrl;
+
 
     public function events()
     {
@@ -49,12 +54,19 @@ class SeoBehavior extends Behavior
     {
 
         if (!Yii::$app instanceof \yii\console\Application) {
+            /** @var ActiveRecord $owner */
             $owner = $this->owner;
+            $handler_class = '\\'.get_class($owner);
+            $handler_hash = CMS::hash($handler_class);
             if ($owner->isNewRecord) {
                 $seo = new SeoUrl;
             } else {
                 $url = (Url::to($this->afterUrl) == Url::to($owner->getUrl())) ? $owner->getUrl() : $this->afterUrl;
-                $seo = SeoUrl::find()->where(['url' => Url::to($url)])->one();
+                $seo = SeoUrl::find()->where([
+                    'owner_id' => $owner->primaryKey,
+                    'handler_hash' => $handler_hash
+                ])->one();
+                //$seo = SeoUrl::find()->where(['url' => Url::to($url)])->one();
                 if (!$seo) {
                     $seo = new SeoUrl;
                 }
@@ -62,7 +74,10 @@ class SeoBehavior extends Behavior
             $seo->load(['SeoUrl' => Yii::$app->request->post('SeoUrl')]);
             $seo->url = Yii::$app->urlManager->createUrl($owner->getUrl());
             $seo->meta_robots = null;
-            $seo->save(false);
+            $seo->owner_id = $owner->primaryKey;
+            $seo->handler_class = $handler_class;
+            $seo->handler_hash = $handler_hash;
+            $seo->save();
             return true;
         }
     }
@@ -72,7 +87,14 @@ class SeoBehavior extends Behavior
      */
     public function afterDelete()
     {
-        SeoUrl::deleteAll(['url' => Yii::$app->urlManager->createUrl($this->url)]);
+        /** @var ActiveRecord $owner */
+        $owner = $this->owner;
+        SeoUrl::deleteAll([
+            'owner_id' => $owner->primaryKey,
+            'handler_hash' => CMS::hash('\\'.get_class($owner))
+        ]);
+
+      //  SeoUrl::deleteAll(['url' => Yii::$app->urlManager->createUrl($this->url)]);
         return true;
     }
 

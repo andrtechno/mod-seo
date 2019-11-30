@@ -23,6 +23,9 @@ class m190330_115548_seo_url extends Migration
     {
         $this->createTable(SeoUrl::tableName(), [
             'id' => $this->primaryKey()->unsigned(),
+            'owner_id' => $this->integer()->unsigned(),
+            'handler_hash' => $this->string(8),
+            'handler_class' => $this->string(255),
             'url' => $this->string(255)->notNull(),
             'title' => $this->string(150)->null(),
             'domain' => $this->tinyInteger(1)->defaultValue(1),
@@ -33,6 +36,8 @@ class m190330_115548_seo_url extends Migration
         ], $this->tableOptions);
 
         $this->createIndex('url', SeoUrl::tableName(), 'url');
+        $this->createIndex('owner_id', SeoUrl::tableName(), 'owner_id');
+        $this->createIndex('handler_hash', SeoUrl::tableName(), 'handler_hash');
         $this->loadSettings();
     }
 
