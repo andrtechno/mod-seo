@@ -53,7 +53,7 @@ class SeoUrl extends ActiveRecord
             [['title', 'description', 'text', 'h1'], 'string'],
             ['title', 'string', 'max' => 150],
             ['url', 'trim'],
-            //['meta_robots', 'default', 'value' => null],
+            [['meta_robots', 'title', 'description', 'text', 'h1'], 'default'],
             ['meta_robots', 'robotsValidator'],
         ];
     }
