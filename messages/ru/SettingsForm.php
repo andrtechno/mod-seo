@@ -12,5 +12,6 @@ return [
     'GOOGLEANALYTICS_JS' => 'Google analytics account CODE',
     'GOOGLE_TAG_MANAGER' => 'Google tag account ID',
     'GOOGLE_TAG_MANAGER_JS' => 'Google tag account CODE',
-    'NESTED_URL' => 'Искать ссылки по вложениям'
+    'NESTED_URL' => 'Искать ссылки по вложениям',
+    'FAVICON_SIZE' => 'Размер favicon'
 ];
