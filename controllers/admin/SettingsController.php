@@ -25,8 +25,10 @@ class SettingsController extends AdminController
 
         $this->breadcrumbs[] = $this->pageName;
         $model = new SettingsForm();
+        $model->favicon_size = explode(',', $model->favicon_size);
         if ($model->load(Yii::$app->request->post())) {
             if ($model->validate()) {
+                $model->favicon_size = implode(",", $model->favicon_size);
                 $model->save();
             }
             $this->refresh();
