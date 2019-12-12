@@ -106,7 +106,7 @@ Disallow: /placeholder
 Disallow: /admin/auth
 Disallow: /assets/
 Disallow: /themes/
-Disallow: /upgrade/
+Disallow: /cart/*
 
 Host: ' . Yii::$app->request->hostInfo . '
 
