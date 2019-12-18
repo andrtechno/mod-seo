@@ -3,7 +3,7 @@ use panix\engine\grid\GridView;
 use panix\engine\widgets\Pjax;
 
 Pjax::begin([
-    'id' => 'pjax-grid-redirects',
+    'dataProvider'=>$dataProvider
 ]);
 echo GridView::widget([
     'tableOptions' => ['class' => 'table table-striped'],

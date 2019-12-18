@@ -10,7 +10,7 @@ if (!Yii::$app->request->isPjax && !Yii::$app->request->isAjax)
 
 
 Pjax::begin([
-    'id' => 'pjax-grid-seo',
+    'dataProvider'=>$dataProvider
 ]);
 echo GridView::widget([
     'id'=>'grid-seo',
