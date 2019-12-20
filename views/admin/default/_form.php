@@ -41,16 +41,7 @@ $form = ActiveForm::begin();
             <h5><?= Html::encode($this->context->pageName); ?></h5>
         </div>
         <div class="card-body">
-
-
-            <?= $form->field($model, 'url')->textInput() ?>
-            <?= $form->field($model, 'meta_robots')->checkboxList([
-                'index' => 'index',
-                'follow' => 'follow',
-                'noindex' => 'noindex',
-                'nofollow' => 'nofollow'
-            ]) ?>
-
+            <?= $form->field($model, 'url')->hint('Например: для главной "/"') ?>
             <?= $form->field($model, 'title')->textInput() ?>
             <?= $form->field($model, 'description')->textInput() ?>
             <?= $form->field($model, 'h1')->textInput() ?>
@@ -58,7 +49,12 @@ $form = ActiveForm::begin();
                 'options' => ['rows' => 6],
 
             ]); ?>
-
+            <?= $form->field($model, 'meta_robots')->checkboxList([
+                'index' => 'index',
+                'follow' => 'follow',
+                'noindex' => 'noindex',
+                'nofollow' => 'nofollow'
+            ]) ?>
 
             <div class="form-group row">
                 <div class="col-sm-4"></div>
