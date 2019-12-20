@@ -31,7 +31,7 @@ class DefaultController extends AdminController
         $this->pageName = Yii::t('seo/default', 'MODULE_NAME');
         $this->buttons = [
             [
-                'label' => Yii::t('seo/default', 'CREATE'),
+                'label' => Yii::t('app', 'CREATE'),
                 'url' => ['/admin/seo/default/create'],
                 'options' => ['class' => 'btn btn-success']
             ]
