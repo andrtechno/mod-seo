@@ -89,7 +89,7 @@ $form = $this->beginWidget('CActiveForm', array(
 
 
 <div class="form-group text-center">
-<?php echo Html::submitButton(Yii::t('app', 'SAVE'), array('class' => 'btn btn-success')); ?>
+<?php echo Html::submitButton(Yii::t('app/default', 'SAVE'), array('class' => 'btn btn-success')); ?>
 </div>
 
 

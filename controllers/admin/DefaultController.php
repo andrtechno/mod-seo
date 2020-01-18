@@ -31,7 +31,7 @@ class DefaultController extends AdminController
         $this->pageName = Yii::t('seo/default', 'MODULE_NAME');
         $this->buttons = [
             [
-                'label' => Yii::t('app', 'CREATE'),
+                'label' => Yii::t('app/default', 'CREATE'),
                 'url' => ['/admin/seo/default/create'],
                 'options' => ['class' => 'btn btn-success']
             ]
@@ -61,7 +61,7 @@ class DefaultController extends AdminController
     public function actionUpdate($id)
     {
         $model = SeoUrl::findModel($id);
-        $this->pageName = Yii::t('app', 'UPDATE');
+        $this->pageName = Yii::t('app/default', 'UPDATE');
         $post = Yii::$app->request->post();
         $isNew = $model->isNewRecord;
 
@@ -352,7 +352,7 @@ class DefaultController extends AdminController
     {
         return [
             [
-                'label' => Yii::t('app', 'SETTINGS'),
+                'label' => Yii::t('app/default', 'SETTINGS'),
                 'url' => array('/admin/seo/settings'),
                 'icon' => Html::icon('settings'),
             ],

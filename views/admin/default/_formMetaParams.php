@@ -6,7 +6,7 @@ use panix\engine\Html;
 <table class="table table-striped table-bordered table-condensed table-responsive" id="container-param-<?= $model->id ?>" style="margin-top:30px">
     <tr>
         <th>Шаблон</th>
-        <th class="text-center" width="10%"><?= Yii::t('app', 'OPTIONS') ?></th>
+        <th class="text-center" width="10%"><?= Yii::t('app/default', 'OPTIONS') ?></th>
     </tr>
     <?php
     $params = SeoParams::find()->where(['url_id' => $model->id])->all();

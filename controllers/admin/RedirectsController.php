@@ -77,7 +77,7 @@ class RedirectsController extends AdminController
         $post = Yii::$app->request->post();
         if ($model->load($post) && $model->validate()) {
             $model->save();
-            Yii::$app->session->setFlash('success', \Yii::t('app', 'SUCCESS_CREATE'));
+            Yii::$app->session->setFlash('success', \Yii::t('app/default', 'SUCCESS_CREATE'));
 
             $redirect = (isset($post['redirect'])) ? $post['redirect'] : Yii::$app->request->url;
             if (!Yii::$app->request->isAjax)
@@ -112,7 +112,7 @@ class RedirectsController extends AdminController
     {
         return [
             [
-                'label' => Yii::t('app', 'SETTINGS'),
+                'label' => Yii::t('app/default', 'SETTINGS'),
                 'url' => array('/admin/seo/settings'),
                 'icon' => Html::icon('settings'),
             ],

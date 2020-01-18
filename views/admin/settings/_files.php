@@ -11,7 +11,7 @@ if (CMS::isChmod($model->path_robots, 0666))
         'options' => [
             'class' => 'alert-warning',
         ],
-        'body' => Yii::t('app', 'CHMOD_ERROR', ['dir' => $model->path_robots, 'chmod' => 666]),
+        'body' => Yii::t('app/default', 'CHMOD_ERROR', ['dir' => $model->path_robots, 'chmod' => 666]),
     ]);
 ?>
 <?= $form->field($model, 'robots')
