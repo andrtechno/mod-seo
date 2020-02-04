@@ -17,7 +17,7 @@
 
 <?= $form->field($model, 'googleanalytics_id')
     ->hint('Example: UA-1234567-00')
-    ->textInput(['maxlength' => 13]); ?>
+    ->textInput(['maxlength' => 15]); ?>
 
 <?= $form->field($model, 'googleanalytics_js')
     ->textarea(['rows' => 6])

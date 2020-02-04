@@ -93,8 +93,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             [['canonical', 'nested_url'], 'boolean'],
             ['google_tag_manager', 'match', 'pattern' => '/GTM-[A-Z0-9]{7}/i'],
             ['google_tag_manager', 'string', 'max' => 11, 'min' => 11],
-            ['googleanalytics_id', 'string', 'max' => 13, 'min' => 13],
-            ['googleanalytics_id', 'match', 'pattern' => '/UA-[0-9]{7}-[0-9]{1,}/i'],
+            ['googleanalytics_id', 'string', 'max' => 15, 'min' => 13],
+            ['googleanalytics_id', 'match', 'pattern' => '/UA-[0-9]{7,9}-[0-9]{1,2}/i'],
             [['title_prefix', 'robots', 'google_site_verification', 'yandex_verification', 'google_tag_manager', 'googleanalytics_id', 'google_tag_manager_js', 'googleanalytics_js'], 'string']
         ];
     }
