@@ -89,13 +89,18 @@ class SeoBehavior extends Behavior
     {
         /** @var ActiveRecord $owner */
         $owner = $this->owner;
-        SeoUrl::deleteAll([
-            'owner_id' => $owner->primaryKey,
-            'handler_hash' => CMS::hash('\\'.get_class($owner))
-        ]);
+        try{
+            SeoUrl::deleteAll([
+                'owner_id' => $owner->primaryKey,
+                'handler_hash' => $owner->getHash()
+            ]);
 
-      //  SeoUrl::deleteAll(['url' => Yii::$app->urlManager->createUrl($this->url)]);
-        return true;
+            //  SeoUrl::deleteAll(['url' => Yii::$app->urlManager->createUrl($this->url)]);
+            return true;
+        }catch (Exception $e){
+
+        }
+
     }
 
 }
