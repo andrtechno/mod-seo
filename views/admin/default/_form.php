@@ -42,8 +42,8 @@ $form = ActiveForm::begin();
         </div>
         <div class="card-body">
             <?= $form->field($model, 'url')->hint('Например: для главной "/"') ?>
-            <?= $form->field($model, 'title')->textInput() ?>
-            <?= $form->field($model, 'description')->textInput() ?>
+            <?= $form->field($model, 'title')->textInput()->hint('Рекоммендуем максимально 60 символов') ?>
+            <?= $form->field($model, 'description')->textInput()->hint('Рекоммендуем максимально 158 символов') ?>
             <?= $form->field($model, 'h1')->textInput() ?>
             <?= $form->field($model, 'text')->widget(TinyMce::class, [
                 'options' => ['rows' => 6],
