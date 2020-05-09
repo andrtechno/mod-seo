@@ -104,6 +104,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         return 'User-Agent: *
 Disallow: /placeholder
 Disallow: /admin/auth
+Disallow: /wishlist
+Disallow: /compare
 Disallow: /assets/
 Disallow: /themes/
 Disallow: /cart/*
