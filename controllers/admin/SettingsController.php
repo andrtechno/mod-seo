@@ -31,9 +31,10 @@ class SettingsController extends AdminController
                 if (!empty($model->favicon_size))
                     $model->favicon_size = implode(",", $model->favicon_size);
                 $model->save();
+
                 Yii::$app->session->setFlash("success", Yii::t('app/default', 'SUCCESS_UPDATE'));
+                return $this->refresh();
             }
-            return $this->refresh();
         }
         return $this->render('index', ['model' => $model]);
     }

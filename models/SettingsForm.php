@@ -5,6 +5,7 @@ namespace panix\mod\seo\models;
 use Yii;
 use panix\engine\SettingsModel;
 use panix\engine\CMS;
+use panix\engine\Html;
 
 class SettingsForm extends SettingsModel
 {
@@ -53,7 +54,7 @@ class SettingsForm extends SettingsModel
         $robots_h = fopen($this->path_robots, "wb");
         fwrite($robots_h, CMS::textReplace($this->robots));
         fclose($robots_h);
-       // $this->favicon_size = implode(',', $this->favicon_size);
+        // $this->favicon_size = implode(',', $this->favicon_size);
 
         return parent::save();
     }
@@ -89,14 +90,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         return [
             ['title_prefix', 'required'],
             ['favicon_size', 'each', 'rule' => ['integer']],
-           // ['favicon_size', 'in', 'range' => [16, 32, 57, 60, 72, 76, 96, 114, 120, 144, 152, 180]],
+            // ['favicon_size', 'in', 'range' => [16, 32, 57, 60, 72, 76, 96, 114, 120, 144, 152, 180]],
             [['canonical', 'nested_url'], 'boolean'],
             ['google_tag_manager', 'match', 'pattern' => '/GTM-[A-Z0-9]{7}/i'],
             ['google_tag_manager', 'string', 'max' => 11, 'min' => 11],
             ['googleanalytics_id', 'string', 'max' => 15, 'min' => 13],
             ['googleanalytics_id', 'match', 'pattern' => '/UA-[0-9]{7,9}-[0-9]{1,2}/i'],
+
+
+            [['google_tag_manager_js', 'googleanalytics_js'], 'validateJsCode'],
+
+
             [['title_prefix', 'robots', 'google_site_verification', 'yandex_verification', 'google_tag_manager', 'googleanalytics_id', 'google_tag_manager_js', 'googleanalytics_js'], 'string']
         ];
+    }
+
+    public function validateJsCode($attribute)
+    {
+        if (preg_match('/(\<script\>|<\/script\>)/i', $this->{$attribute})) {
+            return $this->addError($attribute, Html::decode('Удалите теги &lt;script&gt;,&lt;/script&gt;'));
+        }
     }
 
     protected function defaultRobots()
@@ -104,8 +117,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         return 'User-Agent: *
 Disallow: /placeholder
 Disallow: /admin/auth
-Disallow: /wishlist
-Disallow: /compare
 Disallow: /assets/
 Disallow: /themes/
 Disallow: /cart/*
