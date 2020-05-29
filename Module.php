@@ -11,22 +11,6 @@ class Module extends WebModule
     public $icon = 'seo-monitor';
 
 
-    public function afterInstall2()
-    {
-        Yii::$app->db->import($this->id);
-        return parent::afterInstall();
-    }
-
-    public function afterUninstall2()
-    {
-        //Удаляем таблицу модуля
-        Yii::$app->db->createCommand()->dropTable(Redirects::tableName());
-        Yii::$app->db->createCommand()->dropTable(SeoMain::tableName());
-        Yii::$app->db->createCommand()->dropTable(SeoParams::tableName());
-        Yii::$app->db->createCommand()->dropTable(SeoUrl::tableName());
-        return parent::afterUninstall();
-    }
-
     public function getInfo()
     {
         return [
@@ -48,6 +32,7 @@ class Module extends WebModule
                         'label' => Yii::t('seo/default', 'MODULE_NAME'),
                         'url' => ['/admin/seo'],
                         'icon' => $this->icon,
+                        'visible' => Yii::$app->user->can('/seo/admin/default/index') || Yii::$app->user->can('/seo/admin/default/*')
                     ],
                 ],
             ]
