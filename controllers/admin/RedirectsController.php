@@ -30,11 +30,11 @@ class RedirectsController extends AdminController
         $this->pageName = Yii::t('seo/default', 'REDIRECTS');
 
 
-        $this->breadcrumbs[] = [
+        $this->view->params['breadcrumbs'][] = [
             'label' => $this->module->info['label'],
             'url' => $this->module->info['url'],
         ];
-        $this->breadcrumbs[] = $this->pageName;
+        $this->view->params['breadcrumbs'][] = $this->pageName;
 
         $this->buttons = [
             [
@@ -67,11 +67,11 @@ class RedirectsController extends AdminController
 
         $this->pageName = Yii::t('seo/default', 'REDIRECTS');
 
-        $this->breadcrumbs[] = [
+        $this->view->params['breadcrumbs'][] = [
             'label' => $this->module->info['label'],
             'url' => $this->module->info['url'],
         ];
-        $this->breadcrumbs[] = $this->pageName;
+        $this->view->params['breadcrumbs'][] = $this->pageName;
 
 
         $post = Yii::$app->request->post();

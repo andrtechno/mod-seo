@@ -37,12 +37,12 @@ class DefaultController extends AdminController
             ]
         ];
 
-        $this->breadcrumbs[] = [
+        $this->view->params['breadcrumbs'][] = [
             'label' => $this->module->info['label'],
             'url' => $this->module->info['url'],
         ];
 
-        $this->breadcrumbs[] = $this->pageName;
+        $this->view->params['breadcrumbs'][] = $this->pageName;
 
         $searchModel = new SeoUrlSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
@@ -67,12 +67,12 @@ class DefaultController extends AdminController
 
 
 
-        $this->breadcrumbs[] = [
+        $this->view->params['breadcrumbs'][] = [
             'label' => $this->module->info['label'],
             'url' => $this->module->info['url'],
         ];
 
-        $this->breadcrumbs[] = $this->pageName;
+        $this->view->params['breadcrumbs'][] = $this->pageName;
 
 
         $isNew = $model->isNewRecord;

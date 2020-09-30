@@ -18,12 +18,12 @@ class SettingsController extends AdminController
     {
         $this->pageName = Yii::t('app/default', 'SETTINGS');
 
-        $this->breadcrumbs[] = [
+        $this->view->params['breadcrumbs'][] = [
             'label' => $this->module->info['label'],
             'url' => $this->module->info['url'],
         ];
 
-        $this->breadcrumbs[] = $this->pageName;
+        $this->view->params['breadcrumbs'][] = $this->pageName;
         $model = new SettingsForm();
         $model->favicon_size = explode(',', $model->favicon_size);
         if ($model->load(Yii::$app->request->post())) {
