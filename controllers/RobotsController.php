@@ -16,8 +16,8 @@ class RobotsController extends Controller
             'pageCache' => [
                 'class' => 'yii\filters\PageCache',
                 'only' => ['index'],
-                'duration' => 86400*7,
-               // 'variations' => [Yii::$app->request->get('id')],
+                'duration' => 86400 * 7,
+                // 'variations' => [Yii::$app->request->get('id')],
             ],
         ];
     }
@@ -27,9 +27,11 @@ class RobotsController extends Controller
     {
 
         $robotsTxt = empty(Yii::$app->components['robotsTxt']) ? new RobotsTxt() : Yii::$app->robotsTxt;
-        $robotsTxt->sitemap = Yii::$app->urlManager->createAbsoluteUrl(
-            empty($robotsTxt->sitemap) ? [$this->module->id.'/'.$this->id.'/index'] : $robotsTxt->sitemap
-        );
+        if (Yii::$app->hasModule('sitemap')) {
+            $robotsTxt->sitemap = Yii::$app->urlManager->createAbsoluteUrl(
+                empty($robotsTxt->sitemap) ? ['sitemap/default/index'] : $robotsTxt->sitemap
+            );
+        }
         Yii::$app->response->format = Response::FORMAT_RAW;
         Yii::$app->response->headers->add('Content-Type', 'text/plain');
         return $robotsTxt->render();
