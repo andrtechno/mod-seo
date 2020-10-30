@@ -223,7 +223,10 @@ class DefaultController extends AdminController
 
         return $models;
     }
-
+    public function actionCreate()
+    {
+        return $this->actionUpdate(false);
+    }
     /**
      * Получение списка артибутов всех моделей
      */
