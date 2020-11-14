@@ -1,5 +1,5 @@
 <?php
-return array(
+return [
     'MODULE_NAME' => 'SEO-менеджер',
     'MODULE_DESC' => 'Управление seo сайта.',
     'CONTENT' => 'Содержание',
@@ -11,4 +11,4 @@ return array(
     'REDIRECT_TO' => 'Перенаправлять на ссылку',
     'REDIRECT_HINT' => 'Все ссылки должны начинаться со слеша "/" например {example}',
     'TITLE_PAGE' => ' - Страница {page}',
-);
+];
