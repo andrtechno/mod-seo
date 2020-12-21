@@ -32,7 +32,6 @@ class SeoBehavior extends Behavior
      */
     private $afterUrl;
 
-
     public function events()
     {
         return [
