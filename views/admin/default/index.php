@@ -10,10 +10,10 @@ if (!Yii::$app->request->isPjax && !Yii::$app->request->isAjax)
 
 
 Pjax::begin([
-    'dataProvider'=>$dataProvider
+    'id' => 'pjax-grid-seo'
 ]);
 echo GridView::widget([
-    'id'=>'grid-seo',
+    'id' => 'grid-seo',
     'tableOptions' => ['class' => 'table table-striped'],
     'dataProvider' => $dataProvider,
     'filterModel' => $searchModel,
@@ -23,16 +23,13 @@ echo GridView::widget([
         'title' => $this->context->pageName
     ],
     'columns' => [
-        [
-            'class' => 'yii\grid\SerialColumn',
-            'contentOptions' => ['class' => 'text-center']
-        ],
+        ['class' => 'panix\engine\grid\columns\CheckboxColumn'],
         'url' => [
             'attribute' => 'url',
             'format' => 'html',
             'contentOptions' => ['class' => 'text-left'],
             'value' => function ($model) {
-                return Html::a($model->url, $model->url, ['target' => '_blank','data-pjax'=>'0']);
+                return Html::a($model->url, $model->url, ['target' => '_blank', 'data-pjax' => '0']);
             }
         ],
         'title' => [
