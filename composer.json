@@ -3,7 +3,7 @@
     "description": "Module seo",
     "keywords": ["pixelion-cms", "module", "seo"],
     "homepage": "https://github.com/andrtechno/mod-seo",
-    "type": "yii2-extension",
+    "type": "pixelion-module",
     "license": "MIT",
     "minimum-stability": "dev",
     "authors": [
