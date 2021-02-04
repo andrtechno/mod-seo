@@ -1,5 +1,5 @@
 <?php
-namespace panix\mod\seo\migrations;
+
 /**
  * Generation migrate by PIXELION CMS
  *
