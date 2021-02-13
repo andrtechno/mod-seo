@@ -15,11 +15,11 @@
     ->textarea(['rows' => 5])
     ->hint('<code>{code}</code> - GTM-ABC1234');; ?>
 
-<?= $form->field($model, 'googleanalytics_id')
+<?= $form->field($model, 'google_analytics_id')
     ->hint('Example: UA-1234567-00')
     ->textInput(['maxlength' => 15]); ?>
 
-<?= $form->field($model, 'googleanalytics_js')
+<?= $form->field($model, 'google_analytics_js')
     ->textarea(['rows' => 6])
     ->hint('<code>{code}</code> - UA-1234567-00'); ?>
 

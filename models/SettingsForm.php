@@ -14,8 +14,8 @@ class SettingsForm extends SettingsModel
 
     public $path_robots;
 
-    public $googleanalytics_id;
-    public $googleanalytics_js;
+    public $google_analytics_id;
+    public $google_analytics_js;
     public $google_tag_manager;
     public $google_tag_manager_js;
     public $canonical;
@@ -64,13 +64,13 @@ class SettingsForm extends SettingsModel
     {
         return [
             'title_prefix' => '/',
-            'googleanalytics_id' => null,
+            'google_analytics_id' => null,
             'google_tag_manager' => null,
             'nested_url' => false,
             'canonical' => true,
             'google_site_verification' => '',
             'yandex_verification' => '',
-            'googleanalytics_js' => "window.dataLayer = window.dataLayer || [];
+            'google_analytics_js' => "window.dataLayer = window.dataLayer || [];
 function gtag() {
     dataLayer.push(arguments);
 }
@@ -94,14 +94,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             [['canonical', 'nested_url'], 'boolean'],
             ['google_tag_manager', 'match', 'pattern' => '/GTM-[A-Z0-9]{7}/i'],
             ['google_tag_manager', 'string', 'max' => 11, 'min' => 11],
-            ['googleanalytics_id', 'string', 'max' => 15, 'min' => 13],
-            ['googleanalytics_id', 'match', 'pattern' => '/UA-[0-9]{7,9}-[0-9]{1,2}/i'],
+            ['google_analytics_id', 'string', 'max' => 15, 'min' => 13],
+            ['google_analytics_id', 'match', 'pattern' => '/UA-[0-9]{7,9}-[0-9]{1,2}/i'],
 
 
-            [['google_tag_manager_js', 'googleanalytics_js'], 'validateJsCode'],
+            [['google_tag_manager_js', 'google_analytics_js'], 'validateJsCode'],
 
 
-            [['title_prefix', 'robots', 'google_site_verification', 'yandex_verification', 'google_tag_manager', 'googleanalytics_id', 'google_tag_manager_js', 'googleanalytics_js'], 'string']
+            [['title_prefix', 'robots', 'google_site_verification', 'yandex_verification', 'google_tag_manager', 'google_analytics_id', 'google_tag_manager_js', 'google_analytics_js'], 'string']
         ];
     }
 
