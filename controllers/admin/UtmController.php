@@ -28,7 +28,7 @@ class UtmController extends AdminController
      */
     public function actionIndex()
     {
-        $this->pageName = Yii::t('seo/default', 'MODULE_NAME');
+        $this->pageName = Yii::t('seo/default', 'UTM');
         $this->buttons = [
             [
                 'label' => Yii::t('app/default', 'CREATE'),

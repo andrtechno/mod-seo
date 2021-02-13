@@ -18,6 +18,7 @@ use panix\engine\db\ActiveRecord;
 class Utm extends ActiveRecord
 {
 
+    const MODULE_ID = 'seo';
 
     public static function tableName()
     {
