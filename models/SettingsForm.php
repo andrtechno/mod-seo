@@ -66,8 +66,8 @@ class SettingsForm extends SettingsModel
             'title_prefix' => '/',
             'google_analytics_id' => null,
             'google_tag_manager' => null,
-            'nested_url' => false,
-            'canonical' => true,
+            'nested_url' => 0,
+            'canonical' => 1,
             'google_site_verification' => '',
             'yandex_verification' => '',
             'google_analytics_js' => "window.dataLayer = window.dataLayer || [];
