@@ -18,6 +18,7 @@ class SettingsForm extends SettingsModel
     public $google_analytics_js;
     public $google_tag_manager;
     public $google_tag_manager_js;
+    public $google_tag_ecommerce;
     public $canonical;
     public $google_site_verification;
     public $yandex_verification;
@@ -66,6 +67,7 @@ class SettingsForm extends SettingsModel
             'title_prefix' => '/',
             'google_analytics_id' => null,
             'google_tag_manager' => null,
+            'google_tag_ecommerce' => 0,
             'nested_url' => 0,
             'canonical' => 1,
             'google_site_verification' => '',
@@ -91,7 +93,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             ['title_prefix', 'required'],
             ['favicon_size', 'each', 'rule' => ['integer']],
             // ['favicon_size', 'in', 'range' => [16, 32, 57, 60, 72, 76, 96, 114, 120, 144, 152, 180]],
-            [['canonical', 'nested_url'], 'boolean'],
+            [['canonical', 'nested_url', 'google_tag_ecommerce'], 'boolean'],
             ['google_tag_manager', 'match', 'pattern' => '/GTM-[A-Z0-9]{7}/i'],
             ['google_tag_manager', 'string', 'max' => 11, 'min' => 11],
             ['google_analytics_id', 'string', 'max' => 15, 'min' => 13],
@@ -99,8 +101,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
             [['google_tag_manager_js', 'google_analytics_js'], 'validateJsCode'],
-
-
             [['title_prefix', 'robots', 'google_site_verification', 'yandex_verification', 'google_tag_manager', 'google_analytics_id', 'google_tag_manager_js', 'google_analytics_js'], 'string']
         ];
     }

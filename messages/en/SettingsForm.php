@@ -13,5 +13,6 @@ return [
     'GOOGLE_TAG_MANAGER' => 'Google tag account ID',
     'GOOGLE_TAG_MANAGER_JS' => 'Google tag account CODE',
     'NESTED_URL' => 'Search links by attachments',
-    'FAVICON_SIZE' => 'Favicon size'
+    'FAVICON_SIZE' => 'Favicon size',
+    'GOOGLE_TAG_ECOMMERCE' => 'GTM ecommerce'
 ];

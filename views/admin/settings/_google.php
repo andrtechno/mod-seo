@@ -10,7 +10,7 @@
 <?= $form->field($model, 'google_tag_manager')
     ->hint('Example: GTM-ABC1234')
     ->textInput(['maxlength' => 11]); ?>
-
+<?= $form->field($model, 'google_tag_ecommerce')->hint('динамический ремаркетинг: <strong>conversionintent, conversion, offerdetail</strong>')->checkbox(); ?>
 <?= $form->field($model, 'google_tag_manager_js')
     ->textarea(['rows' => 5])
     ->hint('<code>{code}</code> - GTM-ABC1234');; ?>
