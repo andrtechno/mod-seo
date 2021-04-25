@@ -21,8 +21,9 @@ class m190330_120130_seo_redirect extends Migration
             'id' => $this->primaryKey()->unsigned(),
             'url_from' => $this->string(255)->notNull(),
             'url_to' => $this->string(255)->notNull(),
-            'switch' => $this->boolean()->defaultValue(1),
+            'switch' => $this->boolean()->defaultValue(true),
         ], $this->tableOptions);
+
         $this->createIndex('switch', Redirects::tableName(), 'switch');
     }
 
