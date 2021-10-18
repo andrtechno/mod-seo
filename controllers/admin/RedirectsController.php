@@ -107,7 +107,12 @@ class RedirectsController extends AdminController
             $this->error404();
         }
     }
-
+    
+    public function actionCreate()
+    {
+        return $this->actionUpdate(false);
+    }
+    
     public function getAddonsMenu()
     {
         return [
