@@ -63,7 +63,8 @@ class SeoBehavior extends Behavior
                 $url = (Url::to($this->afterUrl) == Url::to($owner->getUrl())) ? $owner->getUrl() : $this->afterUrl;
                 $seo = SeoUrl::find()->where([
                     'owner_id' => $owner->primaryKey,
-                    'handler_hash' => $handler_hash
+                    'handler_hash' => $handler_hash,
+                    'url'=>Yii::$app->urlManager->createUrl($owner->getUrl())
                 ])->one();
                 //$seo = SeoUrl::find()->where(['url' => Url::to($url)])->one();
                 if (!$seo) {
