@@ -4,16 +4,15 @@
  * @var $model \panix\mod\seo\models\SettingsForm
  */
 ?>
-
-<?= $form->field($model, 'google_site_verification')->hint('&lt;meta name="google-site-verification" content="..." /&gt;'); ?>
+<div class="alert alert-warning">
+    <strong><strong><?= $model->getAttributeLabel('google_analytics_js'); ?></strong> - не изменяйте если вы не уверены в своих действиях. Данных которых здесь нету, буду добавлены автоматически.
+</div>
+<?= $form->field($model, 'google_site_verification')->hint('Example: ABcD1aBcDeABcjeaB33eABQDep8cDe-ABcD2aBo56'); ?>
 
 <?= $form->field($model, 'google_tag_manager')
     ->hint('Example: GTM-ABC1234')
     ->textInput(['maxlength' => 11]); ?>
 <?= $form->field($model, 'google_tag_ecommerce')->hint('динамический ремаркетинг: <strong>conversionintent, conversion, offerdetail</strong>')->checkbox(); ?>
-<?= $form->field($model, 'google_tag_manager_js')
-    ->textarea(['rows' => 5])
-    ->hint('<code>{code}</code> - GTM-ABC1234');; ?>
 
 <?= $form->field($model, 'google_analytics_id')
     ->hint('Example: UA-1234567-00')
