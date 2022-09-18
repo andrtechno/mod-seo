@@ -107,7 +107,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     public function validateJsCode($attribute)
     {
-        if (preg_match('/(\<script\>|<\/script\>)/i', $this->{$attribute})) {
+        if (preg_match('/(\<script|<\/script)/i', $this->{$attribute})) {
             return $this->addError($attribute, Html::decode('Удалите теги &lt;script&gt;,&lt;/script&gt;'));
         }
     }
