@@ -17,7 +17,6 @@ class SettingsForm extends SettingsModel
     public $google_analytics_id;
     public $google_analytics_js;
     public $google_tag_manager;
-    public $google_tag_manager_js;
     public $google_tag_ecommerce;
     public $canonical;
     public $google_site_verification;
@@ -79,11 +78,6 @@ function gtag() {
 gtag('js', new Date());
 gtag('config', '{code}');
 ",
-            'google_tag_manager_js' => "(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','{code}');"
         ];
     }
 
@@ -99,9 +93,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             ['google_analytics_id', 'string', 'max' => 15, 'min' => 13],
             ['google_analytics_id', 'match', 'pattern' => '/UA-[0-9]{7,9}-[0-9]{1,2}/i'],
             ['google_site_verification', 'match', 'pattern' => "/^[a-zA-Z0-9\_\-]+$/u"],
-
-            [['google_tag_manager_js', 'google_analytics_js'], 'validateJsCode'],
-            [['title_prefix', 'robots', 'google_site_verification', 'yandex_verification', 'google_tag_manager', 'google_analytics_id', 'google_tag_manager_js', 'google_analytics_js'], 'string']
+            [['google_analytics_js'], 'validateJsCode'],
+            [['title_prefix', 'robots', 'google_site_verification', 'yandex_verification', 'google_tag_manager', 'google_analytics_id', 'google_analytics_js'], 'string']
         ];
     }
 
