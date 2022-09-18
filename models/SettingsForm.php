@@ -98,7 +98,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             ['google_tag_manager', 'string', 'max' => 11, 'min' => 11],
             ['google_analytics_id', 'string', 'max' => 15, 'min' => 13],
             ['google_analytics_id', 'match', 'pattern' => '/UA-[0-9]{7,9}-[0-9]{1,2}/i'],
-
+            ['google_site_verification', 'match', 'pattern' => "/^[a-zA-Z0-9\_\-]+$/u"],
 
             [['google_tag_manager_js', 'google_analytics_js'], 'validateJsCode'],
             [['title_prefix', 'robots', 'google_site_verification', 'yandex_verification', 'google_tag_manager', 'google_analytics_id', 'google_tag_manager_js', 'google_analytics_js'], 'string']
