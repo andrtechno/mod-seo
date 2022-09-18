@@ -9,7 +9,7 @@
 <?= $form->field($model, 'canonical')->checkbox(); ?>
 <?= $form->field($model, 'title_prefix'); ?>
 <?= $form->field($model, 'nested_url')->checkbox(); ?>
-<?= $form->field($model, 'yandex_verification')->hint('&lt;meta name="yandex-verification" content="..." /&gt;'); ?>
+<?= $form->field($model, 'yandex_verification')->hint('Example: d234dc2a1522da2'); ?>
 <?= $form->field($model, 'favicon_size')->checkboxList([
     16=>'<link rel="apple-touch-icon" sizes="16x16" href="/favicon-16.png">',
     32=>'<link rel="apple-touch-icon" sizes="32x32" href="/favicon-32.png">',
