@@ -5,7 +5,7 @@
  */
 ?>
 <div class="alert alert-warning">
-    <strong><strong><?= $model->getAttributeLabel('google_analytics_js'); ?></strong> - не изменяйте если вы не уверены в своих действиях. Данных которых здесь нету, буду добавлены автоматически.
+    <strong><?= $model->getAttributeLabel('google_analytics_js'); ?></strong> - не изменяйте если вы не уверены в своих действиях. Данных которых здесь нету, буду добавлены автоматически.
 </div>
 <?= $form->field($model, 'google_site_verification')->hint('Example: ABcD1aBcDeABcjeaB33eABQDep8cDe-ABcD2aBo56'); ?>
 
