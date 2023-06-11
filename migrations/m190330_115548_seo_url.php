@@ -24,7 +24,7 @@ class m190330_115548_seo_url extends Migration
             'owner_id' => $this->integer()->unsigned()->null(),
             'handler_hash' => $this->string(8)->null(),
             'handler_class' => $this->string(255)->null(),
-            'url' => $this->string(255)->notNull(),
+            'url' => $this->string(255)->null(),
             'title' => $this->string(150)->null(),
             'domain' => $this->tinyInteger(1)->defaultValue(1),
             'description' => $this->string(255)->null(),
