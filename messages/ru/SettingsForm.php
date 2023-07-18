@@ -14,5 +14,6 @@ return [
     'GOOGLE_TAG_MANAGER_JS' => 'Google tag account CODE',
     'NESTED_URL' => 'Искать ссылки по вложениям',
     'FAVICON_SIZE' => 'Размер favicon',
-    'GOOGLE_TAG_ECOMMERCE' => 'GTM ecommerce'
+    'GOOGLE_TAG_ECOMMERCE' => 'GTM ecommerce',
+    'OG_IMAGE' => 'OpenGraph Изображение'
 ];

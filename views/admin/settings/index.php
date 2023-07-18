@@ -3,7 +3,9 @@
 use panix\engine\Html;
 use panix\engine\bootstrap\ActiveForm;
 
-$form = ActiveForm::begin();
+$form = ActiveForm::begin([
+    'options' => ['enctype' => 'multipart/form-data']
+]);
 
 ?>
 <div class="card">

@@ -13,6 +13,7 @@ class SettingsForm extends SettingsModel
     protected $module = 'seo';
 
     public $path_robots;
+    public $og_image;
 
     public $google_analytics_id;
     public $google_analytics_js;
@@ -84,6 +85,8 @@ gtag('config', '{code}');
     public function rules()
     {
         return [
+            //[['og_image'], 'image', 'skipOnEmpty' => true, 'extensions' => 'jpg, jpeg, png, webp'],
+            ['og_image', 'image', 'skipOnEmpty' => true, 'extensions' => ['jpg', 'jpeg', 'png', 'webp']],
             ['title_prefix', 'required'],
             ['favicon_size', 'each', 'rule' => ['integer']],
             // ['favicon_size', 'in', 'range' => [16, 32, 57, 60, 72, 76, 96, 114, 120, 144, 152, 180]],
@@ -96,6 +99,13 @@ gtag('config', '{code}');
             [['google_analytics_js'], 'validateJsCode'],
             [['title_prefix', 'robots', 'google_site_verification', 'yandex_verification', 'google_tag_manager', 'google_analytics_id', 'google_analytics_js'], 'string']
         ];
+    }
+
+    public function renderOgImage()
+    {
+        $config = Yii::$app->settings->get('seo');
+        if (isset($config->og_image) && file_exists(Yii::getAlias("@uploads/{$config->og_image}")))
+            return Html::img("/uploads/{$config->og_image}?" . time(), ['class' => 'img-fluid img-thumbnail mt-3']);
     }
 
     public function validateJsCode($attribute)
