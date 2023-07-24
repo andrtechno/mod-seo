@@ -93,8 +93,8 @@ gtag('config', '{code}');
             [['canonical', 'nested_url', 'google_tag_ecommerce'], 'boolean'],
             ['google_tag_manager', 'match', 'pattern' => '/GTM-[A-Z0-9]{7}/i'],
             ['google_tag_manager', 'string', 'max' => 11, 'min' => 11],
-            ['google_analytics_id', 'string', 'max' => 15, 'min' => 13],
-            ['google_analytics_id', 'match', 'pattern' => '/UA-[0-9]{7,9}-[0-9]{1,2}/i'],
+            ['google_analytics_id', 'string', 'max' => 20, 'min' => 10],
+            //['google_analytics_id', 'match', 'pattern' => '/UA-[0-9]{7,9}-[0-9]{1,2}/i'],
             ['google_site_verification', 'match', 'pattern' => "/^[a-zA-Z0-9\_\-]+$/u"],
             [['google_analytics_js'], 'validateJsCode'],
             [['title_prefix', 'robots', 'google_site_verification', 'yandex_verification', 'google_tag_manager', 'google_analytics_id', 'google_analytics_js'], 'string']
